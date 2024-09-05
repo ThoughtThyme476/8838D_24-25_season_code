@@ -4,7 +4,7 @@
 #include "robot.h"
 #include "pid.h"
 
-// void autonomous() {
-// //driveStraight2(1800);
-// driveTurn(10);
-// }
+void autonomous() {
+driveStraight2(1800);
+driveTurn(10);
+}

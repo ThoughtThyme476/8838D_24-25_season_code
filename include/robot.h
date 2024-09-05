@@ -15,5 +15,6 @@ extern pros::Motor Conveyor;
 extern pros::ADIDigitalOut Mogo;
 extern pros::Controller con; 
 extern pros::Imu imu;
+extern pros::Optical Eyesight;
 
 #endif

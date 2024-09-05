@@ -13,6 +13,7 @@ extern void driveTurn(int target);
 extern void driveTurn2(int target);
 extern void driveStraight2(int target);
 extern void driveStraightC(int target);
+extern void driveClamp(int target, int clampDistance);
 extern void driveArcL(double theta, double radius, int timeout);
 extern void driveArcR(double theta, double radius, int timeout);
 extern void driveArcLF(double theta, double radius, int timeout);
@@ -21,7 +22,7 @@ extern void driveArcRF(double theta, double radius, int timeout);
 // straight stuff
 #define STRAIGHT_KP 4//3
 #define STRAIGHT_KI 0
-#define STRAIGHT_KD .5
+#define STRAIGHT_KD 0.5
 #define STRAIGHT_INTEGRAL_KI 40
 #define STRAIGHT_MAX_INTEGRAL 14.5
 
