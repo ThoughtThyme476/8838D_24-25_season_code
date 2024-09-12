@@ -87,7 +87,10 @@ void opcontrol() {
 	bool arcToggle = true;
 	bool tankToggle = false;
 	bool PistonsForMogo = false;
+	bool DaSortMaster = false;
+	int ringTime = 0;
 	int time = 0;
+	Eyesight.set_led_pwm(100);
 while (true){
 	// if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){
 	// 	arcToggle = !arcToggle;
@@ -116,7 +119,19 @@ while (true){
  RB.move(right);
 }
 
-//Eyesight.get_hue()
+if (Eyesight.get_hue()<300 && Eyesight.get_hue()>200){
+	DaSortMaster = true;
+}
+
+if (DaSortMaster){
+	ringTime += 10;
+	DaSorter.set_value(true);
+	if (ringTime >= 1000){
+		ringTime = 0;
+		DaSortMaster = false;
+		DaSorter.set_value(false); 
+	}
+}
 
 if (con.get_digital(E_CONTROLLER_DIGITAL_X)) { 
 //	driveTurn2(175);
@@ -127,11 +142,11 @@ if (con.get_digital(E_CONTROLLER_DIGITAL_X)) {
 
 	
 	if(con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-		Intake.move(127) ;
-		Conveyor.move(127);
-	} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
-		Intake.move(-127);
+		Intake.move(-127) ;
 		Conveyor.move(-127);
+	} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+		Intake.move(127);
+		Conveyor.move(127);
 	}
 	else  {
 		Conveyor.move(0);

@@ -26,9 +26,10 @@ pros::Motor Intake(INTAKE_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Motor Conveyor(CONVEYOR_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Optical Eyesight (OPTICAL_PORT);
 
-pros::ADIDigitalOut Mogo ('A ', true);
+pros::ADIDigitalOut Mogo ('D', false);
 pros::Controller con (pros::E_CONTROLLER_MASTER);
-
+pros::ADIDigitalOut TwoBar ('C', false);
+pros::ADIDigitalOut DaSorter ('B', false);
 
 
 
