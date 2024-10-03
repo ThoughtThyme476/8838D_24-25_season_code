@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "8838D drive code",
+    "project_name": "8838D 2 drive code ",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -309,7 +309,7 @@
       }
     },
     "upload_options": {
-      "description": "8838",
+      "description": "8838D",
       "slot": 1,
       "icon": "power"
     },

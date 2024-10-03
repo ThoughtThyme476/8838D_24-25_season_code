@@ -55,7 +55,75 @@ void disabled() {
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {}
+int atn = 0;
+int pressed = 0;
+string autstr;
+
+
+void competition_initialize() {
+while(true){
+
+	if(selec.get_value() == true){
+		pressed++;
+	}
+
+	if (selec.get_value() == false){
+		pressed = 0;
+	}
+
+	if(pressed == 1){
+		atn++;
+	}
+
+	//autons here ===>
+
+	if(atn == 0) {
+		autstr = "RedLeft";
+		con.print(0,0, "aut 0: %s", autstr);
+	}
+	else if(atn == 1) {
+		autstr = "BlueLeft";
+		con.print(0,0, "aut 1: %s", autstr);
+	}
+	else if(atn == 2) {
+		autstr = "RedRight";
+		con.print(0,0, "aut 2: %s", autstr);
+	}
+	else if(atn == 3) {
+		autstr = "BlueRight";
+		con.print(0,0, "aut 3: %s", autstr);
+	}
+	else if(atn == 4) {
+		autstr = "RedLeftElims";
+		con.print(0,0, "aut 4: %s", autstr);
+	}
+	else if(atn == 5) {
+		autstr = "BlueRightElims";
+		con.print(0,0, "aut 5: %s", autstr);
+	}
+	else if(atn == 6) {
+		autstr = "RedRightElims";
+		con.print(0,0, "aut 6: %s", autstr);
+	}
+	else if(atn == 7) {
+		autstr = "BlueLeftElimsElims";
+		con.print(0,0, "aut 7: %s", autstr);
+	}
+	else if(atn == 8) {
+		autstr = "Skills";
+		con.print(0,0, "aut 8: %s", autstr);
+	}
+	else if(atn == 9) {
+		autstr = "Safety";
+		con.print(0,0, "aut 9: %s", autstr);
+	}
+	else if(atn == 10){
+		atn = 0;
+	}
+
+	con.clear();}
+	
+}
 
 /**
  * Runs the user autonomous code. This function will be started in its own task
@@ -84,10 +152,12 @@ void competition_initialize() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
+	LF.set_brake_mode(E_MOTOR_BRAKE_COAST);
 	bool arcToggle = true;
 	bool tankToggle = false;
 	bool PistonsForMogo = false;
 	bool DaSortMaster = false;
+	bool twoBar = false;
 	int ringTime = 0;
 	int time = 0;
 	Eyesight.set_led_pwm(100);
@@ -107,7 +177,7 @@ while (true){
 	if (arcToggle){
  int RX = con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
   int power = con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-  int turn = int(abs(RX) * RX / 127);
+  int turn = int(abs(RX) * RX / 75);
   int left = power + turn;
   int right = power - turn;
 
@@ -118,6 +188,56 @@ while (true){
  RM.move(right);
  RB.move(right);
 }
+//auton selector
+if(atn == 0) {
+		autstr = "RedLeft";
+	}
+	if(atn == 1) {
+		autstr = "BlueRight";
+	}
+	if(atn == 2) {
+		autstr = "RedLeft";
+	}
+	if(atn == 3) {
+		autstr = "BlueLeft";
+	}
+	if(atn == 4) {
+		autstr = "RedRightElims";
+	}
+	if(atn == 5) {
+		autstr = "RedLeftElims";
+	}
+	if(atn == 6) {
+		autstr = "BlueRightElims";
+	}
+	if(atn == 7) {
+		autstr = "BlueLeftElimsElims";
+	}
+	if(atn == 8) {
+		autstr = "Skills";
+	}
+	if(atn == 9) {
+		autstr = "NoMove";
+	}
+	else if(atn == 10){
+		atn = 0;
+	}
+
+	
+
+	if(selec.get_value() == true){
+		pressed++;
+	}
+
+	if (selec.get_value() == false){
+		pressed = 0;
+	}
+
+	if(pressed == 1){
+		atn++;
+	}
+
+	
 
 if (Eyesight.get_hue()<300 && Eyesight.get_hue()>200){
 	DaSortMaster = true;
@@ -133,18 +253,20 @@ if (DaSortMaster){
 	}
 }
 
-if (con.get_digital(E_CONTROLLER_DIGITAL_X)) { 
-//	driveTurn2(175);
-//driveArcL(90, 700, 30000);
-}
+// if (con.get_digital(E_CONTROLLER_DIGITAL_X)) { 
+// //	driveTurn2(175);
+// driveTurn2(100);
+// driveTurn2(-170);
+// //driveArcL(90, 700, 30000);
+// }
 	
 
 
 	
-	if(con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+	if(con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
 		Intake.move(-127) ;
 		Conveyor.move(-127);
-	} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+	} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
 		Intake.move(127);
 		Conveyor.move(127);
 	}
@@ -165,31 +287,45 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
 
 Mogo.set_value(PistonsForMogo);
 
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
+	twoBar = !twoBar;
+}
 
+	TwoBar.set_value(twoBar);
 
+if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
+//driveClamp(-500, 100);
+driveArcLF(90, 500, 3000);
+driveStraight2(500);
+}
+
+//if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
+	// driveStraight(250);
 	// driveArcL(90, 650, 30000);
-// 	setPosition(0,0,0); 
-// 	while(true){
-// 		odometry();
+	// 	setPosition(0,0,0); 
+	// 	while(true){
+	// 		odometry();
 // 		delay(1);
 // 	}
 // driveStraight(1000);
- }
-
+ //}
 pros::delay(1);
 time += 1;
 
 if (time % 50 == 0 && time % 100 !=0 && time % 150 != 0){
-con.print(0, 0, "Time2 %i			", time2);
+con.print(0, 0, "Auton: %s			", autstr);
 } else if (time % 100 == 0 && time % 150 != 0){
-con.print(1, 0, "ERROR %f 			", float (error));
+con.print(1, 0, "ERROR %f 			", float (totalError));
 } else if (time % 150 == 0){
 	con.print(2, 0, " Temp: %f 			", float (imu.get_heading()));
-};
-//((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((()))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+}
+
+}
 
 
 }
+
+
 
 
 

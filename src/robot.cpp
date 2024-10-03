@@ -3,15 +3,16 @@
 #include "robot.h"
 #include "pros/motors.h"
 using namespace pros;
-#define LF_PORT 16 //correct
+
+#define LF_PORT 1 //correct
 #define RF_PORT 4 //correct 
-#define LM_PORT 11 //correct
-#define RM_PORT 10 //correct
-#define LB_PORT 13 //correct
-#define RB_PORT 14 //correct    
-#define IMU_PORT 17 // plugged in
-#define INTAKE_PORT 18 //front roller
-#define CONVEYOR_PORT 20 //hooks 
+#define LM_PORT 2 //correct
+#define RM_PORT 5 //correct
+#define LB_PORT 3 //correct
+#define RB_PORT 7 //correct    
+#define IMU_PORT 11 // plugged in
+#define INTAKE_PORT 8 //front roller
+#define CONVEYOR_PORT 9 //hooks 
 #define OPTICAL_PORT 19 // color switch, mabye 
 
 //#define
@@ -26,11 +27,12 @@ pros::Motor Intake(INTAKE_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Motor Conveyor(CONVEYOR_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Optical Eyesight (OPTICAL_PORT);
 
+
 pros::ADIDigitalOut Mogo ('D', false);
-pros::Controller con (pros::E_CONTROLLER_MASTER);
 pros::ADIDigitalOut TwoBar ('C', false);
 pros::ADIDigitalOut DaSorter ('B', false);
-
+pros::ADIDigitalIn selec ('E');
+pros::Controller con (pros::E_CONTROLLER_MASTER);
 
 
 

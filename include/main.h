@@ -70,6 +70,7 @@ void opcontrol(void);
 #ifdef __cplusplus
 }
 #endif
+extern int atn;
 
 #ifdef __cplusplus
 /**

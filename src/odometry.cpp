@@ -1,186 +1,232 @@
-// #include "api.h"
-// #include "main.h"
-// #include "pid.h"
-// #include "robot.h"
-// #include "auton.h"
-// #include "odometry.h"
+#include "api.h"
+#include "main.h"
+#include "pid.h"
+#include "robot.h"
+#include "auton.h"
+#include "odometry.h"
 
-// using namespace pros;
-// using namespace std;
+using namespace pros;
+using namespace std;
 
-// int turnv = 0;
+int turnv = 0;
 
-// double absoluteAngleToTarget = 0;
-// double position = 0;
+double absoluteAngleToTarget = 0;
+double position = 0;
 
-// float deltaX;
-// float deltaY;
+float deltaX;
+float deltaY;
 
-// float startingX;
-// float startingY; 
-// float straightHeading;
+float startingX;
+float startingY; 
+float startingHeading;
 
-// float r0;
-// float r1;
+float r0;
+float r1;
 
-// float delta_left_encoder_pos;
-// float delta_right_encoder_pos;
-// float delta_center_encoder_pros;
+float delta_left_encoder_pos;
+float delta_right_encoder_pos;
+float delta_center_encoder_pos;
 
-// float prev_left_encoder_pos;
-// float prev_right_encoder_pos;
-// float prev_center_encoder_pros;
+float prev_left_encoder_pos;
+float prev_right_encoder_pos;
+float prev_center_encoder_pos;
 
-// float left_encoder_pos;
-// float right_encoder_pos;
-// float center_encoder_pros;
+float left_encoder_pos;
+float right_encoder_pos;
+float center_encoder_pos;
 
-// float localX;
-// float localY;
+float localX;
+float localY;
 
-// float phi;
+float phi;
 
-// float prev_imu_pos;
-// float imu_pos;
+float prev_imu_pos;
+float imu_pos;
 
-// float x_pos;
-// float y_pos;
+float x_pos;
+float y_pos;
 
-// float pi = 3.14159265359; 
+float pi = 3.14159265359; 
 
-// int odo_time = 0;
+int odo_time = 0;
 
-// void setPosition(float xcoord, float ycoord, float heading){
-// startingX = xcoord; 
-// startingY = ycoord;
+float local_polar_angle;
+float local_polar_length; 
+float global_polar_angle;
 
-// startingHeading = heading;
+void setPosition(float xcoord, float ycoord, float heading){
+startingX = xcoord; 
+startingY = ycoord;
 
-
-// x_pos = startingX;
-// y_pos = startingY;
-// }
-
-// void odometry(){
+startingHeading = heading;
 
 
-//     prev_imu_pos = imu_pos;
-//     imu_pos = imu.get_rotation() + startingHeading;
+x_pos = startingX;
+y_pos = startingY;
+}
 
-//     prev_left_encoder_pos = left_encoder_pos;
-//     prev_right_encoder_pos = right_encoder_pos;  
-//     prev_center_encoder_pos = center_encoder_pos;
-
-//     left_encoder_pos = LF.get_position();
-//     right_encoder_pos = RF.get_position();
-//     center_encoder_pos = 0;
-
-//     delta_left_encoder_pos = left_encoder_pos - prev_left_encoder_pos;
-//     delta_right_encoder_pos = right_encoder_pos - prev_right_encoder_pos;
-//     delta_right_encoder_pos = center_encoder_pos - prev_center_encoder_pos;
+void odometry(){
 
 
+    prev_imu_pos = imu_pos;
+    imu_pos = imu.get_rotation() + startingHeading;
 
-//     phi = imu_pos - prev_imu_pos;
+    prev_left_encoder_pos = left_encoder_pos;
+    prev_right_encoder_pos = right_encoder_pos;  
+    prev_center_encoder_pos = center_encoder_pos;
 
-//     r0 = ((delta_left_encoder_pos + delta_right_encoder_pos) / 2) / phi;
-//     r1 = delta_center_endoder_pos/phi;
+    left_encoder_pos = LF.get_position();
+    right_encoder_pos = RF.get_position();
+    center_encoder_pos = 0;
 
-
-//     if (phi < IMU_THERSHOLD){
-//         localX = (delta_left_encoder_pos + delta_right_encoder_pos) / 2;
-//         localY = delta_center_encoder_pos - FORWARD_OFFSET * ((pi*phi)/180);
-//     } else {
-//         localX = r0*sin((pi*phi)/180) - r1*(1-cos((pi*phi)/180));
-//         localY = r1*sin((pi*phi)/180) + r0*(1-cos((phi*pi)/180));
-//     }
-
-
-//     deltaY = localX * cos((pi * imu_pos)/180) - localY * sin((pi * imu_pos)/180);
-//     deltaX = localX * sin((pi * imu_pos)/180) + localY * sin((pi * imu_pos)/180);
-
-//     x_pos += deltaX;
-//     y_pos += deltaY;
-
-//     if (odo_time % 50 == 0 && odo_time % 100 != 0 && odo_time % 150 != 0){
-//         con.print(0, 0, "x_pos: %f          ", float(x_pos));
-//     } else if(odo_time % 100 == 0 && odo_time % 150 != 0){
-//        con.print(1, 0, "y_pos: %f              ", float(y_pos));
-//     } else if(odo_time % 150 == 0){
-//         con.print(2, 0, "Phi: %f               ", float(phi));
-//     }
-
-//     odo_time += 10; 
-// }
+    delta_left_encoder_pos = left_encoder_pos - prev_left_encoder_pos;
+    delta_right_encoder_pos = right_encoder_pos - prev_right_encoder_pos;
+    delta_right_encoder_pos = center_encoder_pos - prev_center_encoder_pos;
 
 
 
+    phi = imu_pos - prev_imu_pos;
+
+    r0 = ((delta_left_encoder_pos + delta_right_encoder_pos) / 2) / phi;
+    r1 = delta_center_encoder_pos/phi;
 
 
-// void boomerang(double xTarget, double Ytarget){
-//     double hypot = 0;
-//     double voltage = 0;
-//     double heading_correction = 0; 
-//     int btime = 0;
-//     int timeout = 30000;
-//     int count = 0;
+    if (phi < IMU_THERSHOLD){
+        localX = (delta_left_encoder_pos + delta_right_encoder_pos) / 2;
+        localY = delta_center_encoder_pos - FORWARD_OFFSET * ((pi*phi)/180);
+    } else {
+        localX = r0*sin((pi*phi)/180) - r1*(1-cos((pi*phi)/180));
+        localY = r1*sin((pi*phi)/180) + r0*(1-cos((phi*pi)/180));
+    }
+
+
+    deltaY = localX * cos((pi * imu_pos)/180) - localY * sin((pi * imu_pos)/180);
+    deltaX = localX * sin((pi * imu_pos)/180) + localY * sin((pi * imu_pos)/180);
+
+    x_pos += deltaX;
+    y_pos += deltaY;
+
+    if (odo_time % 50 == 0 && odo_time % 100 != 0 && odo_time % 150 != 0){
+        con.print(0, 0, "x_pos: %f          ", float(x_pos));
+    } else if(odo_time % 100 == 0 && odo_time % 150 != 0){
+       con.print(1, 0, "y_pos: %f              ", float(y_pos));
+    } else if(odo_time % 150 == 0){
+        con.print(2, 0, "Phi: %f               ", float(phi));
+    }
+
+    odo_time += 10; 
+}
 
 
 
-//     while(true){
-//         odometry();
-//         hypot = sqrt(pow((x_pos - xTarget),2) + pow((y_pos - yTarget),2 ));
-//         absoluteAngleToTarget = atan2((xTarget - x_pos),(yTarget - y_pos)) * (180/pi);
+void Odometry2(){
+    prev_imu_pos = imu_pos;
+    imu_pos = imu.get_rotation() + startingHeading; 
 
-//         if (absoluteAngleToTarget > 180){
-//             absoluteAngleToTarget = absoluteAngleToTarget - 360;
-//         }
+    prev_left_encoder_pos = left_encoder_pos;
+    prev_right_encoder_pos = right_encoder_pos;
+    prev_center_encoder_pos = center_encoder_pos;
 
-//         position = imu.get_heading();
+    left_encoder_pos = LF.get_position();
+    right_encoder_pos = RF.get_position();
+    center_encoder_pos = 0;
 
-//         if (position > 180){
-//             position = position - 360;
-//         } 
+    delta_left_encoder_pos = left_encoder_pos - prev_center_encoder_pos;
+    delta_right_encoder_pos = right_encoder_pos - prev_center_encoder_pos;
+    delta_center_encoder_pos = center_encoder_pos - prev_center_encoder_pos; 
 
-//         if ((absoluteAngleToTarget < 0) && (position > 0)){
-//             if ((position - absoluteAngleToTarget) >= 180){
-//                 absoluteAngleToTarget = absoluteAngleToTarget + 360;
-//                 psoition = imu.get_heading();
-//             } else {
-//                 trunv = (abs(psoition) - abs(absoluteAngleToTarget));
-//             }
-//         } else {
-//             turnv = abs(abs(position) - abs(absoluteAngleToTarget))
-//         }
+    phi = imu_pos - prev_imu_pos;
+    phi = (pi*phi)/180;
 
-//         if(abs(turnv) > 90){
-//             absoluteAngleToTarget = absoluteAngleToTarget - 360;
-//             hypot = -hypot; 
-//         }
+    if(phi == 0){
+        localX = delta_center_encoder_pos;
+        localY = delta_right_encoder_pos; 
+    } else {
+        localX = (2*sin(phi/2))*((delta_center_encoder_pos/phi) +FORWARD_OFFSET);
+        localY = (2*sin(phi/2))*((delta_center_encoder_pos/phi) +SIDEWAYS_OFFEST);
+    }
 
-//         if(absoluteAngleToTarget >= 359){
-//             absoluteAngleToTarget = absoluteAngleToTarget- 360;
-//         }
+    if (localX == 0 && localY == 0){
+        local_polar_angle = 0;
+        local_polar_length = 0;
+    } else {
+        local_polar_angle + atan2(localY, localX);
+        local_polar_length = sqrt(pow(localX, 2) + pow(localX, 2));
+    }
 
-//         if((absoluteAngleToTarget < 0) && (position > 0)){
-//             if((position - absoluteAngleToTarget) >= 180 ){
-//                 absoluteAngleToTarget = absoluteAngleToTarget + 360;
-//                 position = imu.get_heading();
-//             }
+    global_polar_angle = local_polar_angle - ((pi*prev_imu_pos)/180) - (phi/2);
 
-//         } else if ((absoluteAngleToTarget > 0) && (position > 0)){
-//             if((absoluteAngleToTarget - position) >= 180){
-//                 position = imu.get_heading();
-//             }
-//         }
-//         setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
-//         heading_corrcetion = calcPID(absoluteAngleToTarget, position, TURN_INTEGRAL_KI, TURN_MAX_INTEGRAL);
-//         voltage = -clacPID(0, hypot, STRAIGHT_INTERGRAL_KI, STRAIGHT_MAX_INTEGRAL);
+    deltaX = local_polar_length*cos(global_polar_angle);
+    deltaY = local_polar_length*cos(global_polar_angle);
 
-//         if(voltage > 127){
-//             voltage = 127;
-//         }else if(voltage > -127) { 
-//             voltage = -127;
-//         }
-//     }
-// }
+    x_pos += deltaX;
+    y_pos += deltaY;
+}
+
+void boomerang(double xTarget, double yTarget){
+    double hypot = 0;
+    double voltage = 0;
+    double heading_correction = 0; 
+    int btime = 0;
+    int timeout = 30000;
+    int count = 0;
+
+
+
+    while(true){
+        odometry();
+        hypot = sqrt(pow((x_pos - xTarget),2) + pow((y_pos - yTarget),2 ));
+        absoluteAngleToTarget = atan2((xTarget - x_pos),(yTarget - y_pos)) * (180/pi);
+
+        if (absoluteAngleToTarget > 180){
+            absoluteAngleToTarget = absoluteAngleToTarget - 360;
+        }
+
+        position = imu.get_heading();
+
+        if (position > 180){
+            position = position - 360;
+        } 
+
+        if ((absoluteAngleToTarget < 0) && (position > 0)){
+            if ((position - absoluteAngleToTarget) >= 180){
+                absoluteAngleToTarget = absoluteAngleToTarget + 360;
+                position = imu.get_heading();
+            } else {
+                turnv = (abs(position) - abs(absoluteAngleToTarget));
+            }
+        } else{
+            turnv = abs(abs(position) - abs(absoluteAngleToTarget));
+        }
+
+        if(abs(turnv) > 90){
+            absoluteAngleToTarget = absoluteAngleToTarget - 360;
+            hypot = -hypot; 
+        }
+
+        if(absoluteAngleToTarget >= 359){
+            absoluteAngleToTarget = absoluteAngleToTarget- 360;
+        }
+
+        if((absoluteAngleToTarget < 0) && (position > 0)){
+            if((position - absoluteAngleToTarget) >= 180 ){
+                absoluteAngleToTarget = absoluteAngleToTarget + 360;
+                position = imu.get_heading();
+            }
+
+        } else if ((absoluteAngleToTarget > 0) && (position > 0)){
+            if((absoluteAngleToTarget - position) >= 180){
+                position = imu.get_heading();
+            }
+        }
+        setConstants(STRAIGHT_KP, STRAIGHT_KI, STRAIGHT_KD);
+        heading_correction = calcPID(absoluteAngleToTarget, position, TURN_INTEGRAL_KI, TURN_MAX_INTEGRAL);
+        voltage = -calcPID(0, hypot, STRAIGHT_INTEGRAL_KI, STRAIGHT_MAX_INTEGRAL);
+
+        if(voltage > 127){
+            voltage = 127;
+        }else if(voltage > -127) { 
+            voltage = -127;
+        }
+    }
+}

@@ -18,5 +18,6 @@ extern pros::ADIDigitalOut DaSorter;
 extern pros::Controller con; 
 extern pros::Imu imu;
 extern pros::Optical Eyesight;
+extern pros::ADIDigitalIn selec;
 
 #endif
