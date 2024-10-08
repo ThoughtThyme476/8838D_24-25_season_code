@@ -8,7 +8,8 @@ using namespace c;
 using namespace std;
 
 double totalError;
-
+bool DaSortMaster = false;
+int ringTime = 0;
 double vKp;
 double vKi;
 double vKd;
@@ -154,6 +155,46 @@ double calcPID3(double target3, double input3, int integralKI3, int maxIntegral3
     return power3;
 
 }
+
+
+void ColorSort(int color){
+    //red sort	
+    if (color == 1){
+    if (Eyesight.get_hue()<40 && Eyesight.get_hue()>12){
+	DaSortMaster = true;
+    }
+    }
+    //blue sort
+    if (color == 2){
+    if (Eyesight.get_hue()<110 && Eyesight.get_hue()>180){
+	DaSortMaster = true;
+    }
+    }
+
+
+if (DaSortMaster == true){
+	//int delayTime = 200;
+	ringTime += 1;
+	//
+	// DaSorter.set_value(true);
+
+	if (ringTime >= 1300) {
+		DaSortMaster = false;
+		ringTime=0;
+
+	} else if (ringTime>= 1000){
+		Intake.move(-127);
+		Conveyor.move(-127);
+	} else {
+		Intake.move(127);
+		Conveyor.move(127);
+	}
+	} else{
+		Intake.move(127);
+		Conveyor.move(127);
+	} 
+}
+
 
 void driveStraight(int target) {
 
@@ -1222,4 +1263,7 @@ int fix = calcPID3((init_heading + rightcorrect), position, ARC_HEADING_INTEGRAL
         time2 += 10;
         delay(10);
     }   
-}
+} 
+
+
+

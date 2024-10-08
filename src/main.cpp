@@ -165,10 +165,7 @@ void opcontrol() {
 	bool arcToggle = true;
 	bool tankToggle = false;
 	bool PistonsForMogo = false;
-	bool DaSortMaster = false;
 	bool twoBar = false;
-	bool fling = false;
-	int ringTime = 0;
 	int time = 0;
 	string red;
 	string blue;
@@ -250,41 +247,7 @@ if(atn == 0) {
 		atn++;
 	}
 ////////////////////////////////////////////////change values
-//red sort	
-if (color_selec == 1){
-if (Eyesight.get_hue()<40 && Eyesight.get_hue()>12){
-	DaSortMaster = true;
-}
-}
-//blue sort
-if (color_selec == 2){
-if (Eyesight.get_hue()<110 && Eyesight.get_hue()>180){
-	DaSortMaster = true;
-}
-}
 
-
-if (DaSortMaster == true){
-	//int delayTime = 200;
-	ringTime += 1;
-	//
-	// DaSorter.set_value(true);
-
-	if (ringTime >= 1300) {
-		DaSortMaster = false;
-		ringTime=0;
-
-	} else if (ringTime>= 1000){
-		Intake.move(-127);
-		Conveyor.move(-127);
-	} else {
-		Intake.move(127);
-		Conveyor.move(127);
-	}
-	} else{
-		Intake.move(127);
-		Conveyor.move(127);
-	} 
 
 // if (con.get_digital(E_CONTROLLER_DIGITAL_X)) { 
 // //	driveTurn2(175);
@@ -293,20 +256,22 @@ if (DaSortMaster == true){
 // //driveArcL(90, 700, 30000);
 // }
 	
+//////////////////////////////////////////ADD THIS FOR COLOR TESTING 
+	//ColorSort(color_selec);
 
-
+/////////////////////////////////////////////
 	
-	// if(con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
-	// 	Intake.move(-127) ;
-	// 	Conveyor.move(-127);
-	// } else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-	// 	Intake.move(127);
-	// 	Conveyor.move(127);
-	// }
-	// else  {
-	// 	Conveyor.move(0);
-	// 	Intake.move(0);
-	// }
+	if(con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+		Intake.move(-127) ;
+		Conveyor.move(-127);
+	} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+		Intake.move(127);
+		Conveyor.move(127);
+	}
+	else  {
+		Conveyor.move(0);
+		Intake.move(0);
+	}
 
 
 

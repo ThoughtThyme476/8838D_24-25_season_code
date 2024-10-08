@@ -24,6 +24,7 @@ extern void driveArcL(double theta, double radius, int timeout);
 extern void driveArcR(double theta, double radius, int timeout);
 extern void driveArcLF(double theta, double radius, int timeout);
 extern void driveArcRF(double theta, double radius, int timeout);
+extern void ColorSort(int color);
 extern double totalError;
 
 // straight stuff
