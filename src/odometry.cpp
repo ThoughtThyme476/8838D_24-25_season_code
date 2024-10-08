@@ -65,7 +65,7 @@ x_pos = startingX;
 y_pos = startingY;
 }
 
-void odometry(){
+void Odometry(){
 
 
     prev_imu_pos = imu_pos;
@@ -161,6 +161,18 @@ void Odometry2(){
 
     x_pos += deltaX;
     y_pos += deltaY;
+
+      if (odo_time % 50 == 0 && odo_time % 100 != 0 && odo_time % 150!= 0) {
+        con.print(0,0, "x_pos: %f               ", float(x_pos));
+      } else if (odo_time % 100 == 0 && odo_time % 150 != 0) {
+        con.print (1,0, "y_pos: %f              ", float(y_pos));
+      } else if (odo_time % 150 == 0) {
+        con.print(2,0, "Pos: %f                ", float(phi));
+      }
+
+
+odo_time += 10;
+
 }
 
 void boomerang(double xTarget, double yTarget){
@@ -174,7 +186,7 @@ void boomerang(double xTarget, double yTarget){
 
 
     while(true){
-        odometry();
+        Odometry2();
         hypot = sqrt(pow((x_pos - xTarget),2) + pow((y_pos - yTarget),2 ));
         absoluteAngleToTarget = atan2((xTarget - x_pos),(yTarget - y_pos)) * (180/pi);
 

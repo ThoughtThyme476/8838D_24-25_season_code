@@ -9,9 +9,10 @@
 #define HEADING_CUTOFF 100
 #define SIDEWAYS_OFFEST 283
 
-extern void odometry();
+extern void Odometry();
+extern void Odometry2();
 extern void driveToPoint(double xTarget, double yTarget, double preferredHeading);
-extern void boomrang(double xTarget, double yTarget);
+extern void boomerang(double xTarget, double yTarget);
 extern void setPosition(float xcoord, float ycoord, float heading);
 
 extern float x_pos;

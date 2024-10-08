@@ -3,6 +3,7 @@
 #include "api.h"
 #include "pid.h"
 #include "auton.h"
+#include "odometry.h"
 //#include "odometry.h"
 using namespace std;
 using namespace pros;
@@ -320,11 +321,12 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
 
 	TwoBar.set_value(twoBar);
 
-// if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
-// //driveClamp(-500, 100);
-// driveArcLF(90, 500, 3000);
-// driveStraight2(500);
-// }
+if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
+while(true){
+	Odometry2();
+	delay(1);
+}
+}
 
 //if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
 	// driveStraight(250);
