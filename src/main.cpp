@@ -248,11 +248,11 @@ if(atn == 0) {
 	if(pressed == 1){
 		atn++;
 	}
-
+////////////////////////////////////////////////change values
 //red sort	
 if (color_selec == 1){
 if (Eyesight.get_hue()<40 && Eyesight.get_hue()>12){
-	fling = true;
+	DaSortMaster = true;
 }
 }
 //blue sort
@@ -265,15 +265,25 @@ if (Eyesight.get_hue()<110 && Eyesight.get_hue()>180){
 
 if (DaSortMaster == true){
 	//int delayTime = 200;
-	ringTime += 50;
+	ringTime += 1;
 	//
 	// DaSorter.set_value(true);
-	if (ringTime >= 1000){
-		ringTime = 0;
+
+	if (ringTime >= 1300) {
 		DaSortMaster = false;
-			fling == true; 
+		ringTime=0;
+
+	} else if (ringTime>= 1000){
+		Intake.move(-127);
+		Conveyor.move(-127);
+	} else {
+		Intake.move(127);
+		Conveyor.move(127);
 	}
-}
+	} else{
+		Intake.move(127);
+		Conveyor.move(127);
+	} 
 
 // if (con.get_digital(E_CONTROLLER_DIGITAL_X)) { 
 // //	driveTurn2(175);
@@ -285,22 +295,17 @@ if (DaSortMaster == true){
 
 
 	
-	if(con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
-		Intake.move(-127) ;
-		Conveyor.move(-127);
-	} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
-		Intake.move(127);
-		Conveyor.move(127);
-		if(fling == true){
-			Conveyor.brake();
-			delay(ringTime);
-			break;
-		}
-	}
-	else  {
-		Conveyor.move(0);
-		Intake.move(0);
-	}
+	// if(con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+	// 	Intake.move(-127) ;
+	// 	Conveyor.move(-127);
+	// } else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+	// 	Intake.move(127);
+	// 	Conveyor.move(127);
+	// }
+	// else  {
+	// 	Conveyor.move(0);
+	// 	Intake.move(0);
+	// }
 
 
 
