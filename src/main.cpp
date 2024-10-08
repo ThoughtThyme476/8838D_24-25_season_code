@@ -33,7 +33,7 @@ void on_center_button() {
  */
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello PROS User!");
+	pros::lcd::set_text(1, "It's go time!! ");
 
 	pros::lcd::register_btn1_cb(on_center_button);
 }
@@ -62,7 +62,15 @@ string autstr;
 
 void competition_initialize() {
 while(true){
-
+	int selecs = 0;
+	if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
+		selecs++;
+		delay(200);
+		if(selecs >= 3){
+		 selecs == 0;
+		}
+	}
+//auto selector below 
 	if(selec.get_value() == true){
 		pressed++;
 	}
@@ -158,8 +166,12 @@ void opcontrol() {
 	bool PistonsForMogo = false;
 	bool DaSortMaster = false;
 	bool twoBar = false;
+	bool fling = false;
 	int ringTime = 0;
 	int time = 0;
+	string red;
+	string blue;
+	int color_selec = 1;
 	Eyesight.set_led_pwm(100);
 while (true){
 	// if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){
@@ -237,19 +249,29 @@ if(atn == 0) {
 		atn++;
 	}
 
-	
-
-if (Eyesight.get_hue()<300 && Eyesight.get_hue()>200){
+//red sort	
+if (color_selec == 1){
+if (Eyesight.get_hue()<40 && Eyesight.get_hue()>12){
+	fling = true;
+}
+}
+//blue sort
+if (color_selec == 2){
+if (Eyesight.get_hue()<110 && Eyesight.get_hue()>180){
 	DaSortMaster = true;
 }
+}
 
-if (DaSortMaster){
-	ringTime += 10;
-	DaSorter.set_value(true);
+
+if (DaSortMaster == true){
+	//int delayTime = 200;
+	ringTime += 50;
+	//
+	// DaSorter.set_value(true);
 	if (ringTime >= 1000){
 		ringTime = 0;
 		DaSortMaster = false;
-		DaSorter.set_value(false); 
+			fling == true; 
 	}
 }
 
@@ -269,6 +291,11 @@ if (DaSortMaster){
 	} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
 		Intake.move(127);
 		Conveyor.move(127);
+		if(fling == true){
+			Conveyor.brake();
+			delay(ringTime);
+			break;
+		}
 	}
 	else  {
 		Conveyor.move(0);
@@ -293,11 +320,11 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
 
 	TwoBar.set_value(twoBar);
 
-if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
-//driveClamp(-500, 100);
-driveArcLF(90, 500, 3000);
-driveStraight2(500);
-}
+// if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
+// //driveClamp(-500, 100);
+// driveArcLF(90, 500, 3000);
+// driveStraight2(500);
+// }
 
 //if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
 	// driveStraight(250);

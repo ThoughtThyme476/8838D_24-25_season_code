@@ -71,6 +71,7 @@ void opcontrol(void);
 }
 #endif
 extern int atn;
+extern int selecs;
 
 #ifdef __cplusplus
 /**

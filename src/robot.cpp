@@ -29,9 +29,9 @@ pros::Optical Eyesight (OPTICAL_PORT);
 
 
 pros::ADIDigitalOut Mogo ('D', false);
-pros::ADIDigitalOut TwoBar ('C', false);
+pros::ADIDigitalOut TwoBar ('E', false);
 pros::ADIDigitalOut DaSorter ('B', false);
-pros::ADIDigitalIn selec ('E');
+pros::ADIDigitalIn selec ('C');
 pros::Controller con (pros::E_CONTROLLER_MASTER);
 
 
