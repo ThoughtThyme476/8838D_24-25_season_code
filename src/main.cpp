@@ -168,6 +168,8 @@ void opcontrol() {
 	bool PistonsForMogo = false;
 	bool twoBar = false;
 	bool doinker = false;
+	bool NEWR1 = false;
+	bool NEWR2 = false;
 	int time = 0;
 	string red;
 	string blue;
@@ -178,6 +180,20 @@ while (true){
 	// 	arcToggle = !arcToggle;
 	// 	tankToggle = !tankToggle;
 	// }
+	if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)){
+		NEWR1 = true;
+	} else {
+		NEWR1 = false;
+	}
+
+	if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_R2)){
+		NEWR2 = true;
+	} else {
+		NEWR2 = false;
+	}
+
+
+
 	if (tankToggle){
  LF.move(con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
  LM.move(con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
@@ -263,10 +279,12 @@ if(atn == 0) {
 
 /////////////////////////////////////////////
 	
-	if(con.get_digital(pros::E_CONTROLLER_DIGITAL_R2)){
+	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (NEWR1 && con.get_digital(E_CONTROLLER_DIGITAL_R2))) || (NEWR1 && NEWR2)){
+	doinker = !doinker;	
+	} else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
 		Intake.move(-127) ;
 		Conveyor.move(-127);
-	} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_R1)){
+	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
 		Intake.move(127);
 		Conveyor.move(127);
 	}
