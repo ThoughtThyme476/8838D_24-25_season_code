@@ -15,6 +15,7 @@ using namespace pros;
 #define CONVEYOR_PORT 9 //hooks 
 #define OPTICAL_PORT 19 // color switch, mabye 
 
+
 //#define
 pros::Imu imu (IMU_PORT);
 pros::Motor LF (LF_PORT, pros::E_MOTOR_GEARSET_06,true);
@@ -28,10 +29,13 @@ pros::Motor Conveyor(CONVEYOR_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Optical Eyesight (OPTICAL_PORT);
 
 
+
 pros::ADIDigitalOut Mogo ('D', false);
 pros::ADIDigitalOut TwoBar ('E', false);
 pros::ADIDigitalOut DaSorter ('B', false);
+pros::ADIDigitalOut Doinker ('H', false);
 pros::ADIDigitalIn selec ('C');
+pros::ADIAnalogIn DistanceSense ('A');
 pros::Controller con (pros::E_CONTROLLER_MASTER);
 
 

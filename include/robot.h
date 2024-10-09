@@ -15,6 +15,7 @@ extern pros::Motor Conveyor;
 extern pros::ADIDigitalOut Mogo;
 extern pros::ADIDigitalOut TwoBar;
 extern pros::ADIDigitalOut DaSorter;
+extern pros::ADIDigitalOut Doinker;
 extern pros::Controller con; 
 extern pros::Imu imu;
 extern pros::Optical Eyesight;
