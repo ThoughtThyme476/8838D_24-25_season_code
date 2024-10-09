@@ -1265,5 +1265,30 @@ int fix = calcPID3((init_heading + rightcorrect), position, ARC_HEADING_INTEGRAL
     }   
 } 
 
+void wallResetB(int resetTime){
+    int count = 0;
+    while (true){
+        LF.move(-127);
+        LM.move(-127);
+        LB.move(-127);
+        RF.move(-127);
+        RM.move(-127);
+        RB.move(-127);
+        if (abs(RF.get_actual_velocity()) < 2) count ++;
+        if (count >= 20) break;
+    }
+}
 
-
+void wallResetF(int resetTime){
+    int count = 0;
+    while (true){
+        LF.move(127);
+        LM.move(127);
+        LB.move(127);
+        RF.move(127);
+        RM.move(127);
+        RB.move(127);
+        if (abs(RF.get_actual_velocity()) < 2) count ++;
+        if (count >= 20) break;
+    }
+}
