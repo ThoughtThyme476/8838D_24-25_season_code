@@ -72,6 +72,7 @@ while(true){
 		}
 	}
 //auto selector below 
+//comment
 	if(selec.get_value() == true){
 		pressed++;
 	}
