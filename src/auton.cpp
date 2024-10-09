@@ -14,6 +14,7 @@ void autonomous() {
     
 if(atn == 0){ //change to 0
 
+//
 
 driveStraight2(150);
 delay(300);
@@ -78,37 +79,6 @@ driveArcLF(40, 150, 3000);
 //Blue right side
 
       if(atn == 1) {
-driveStraightSlow(-650, 70);
-driveTurn2(-40);
-driveClampS(-700, 100, 50);
-delay(300);
-driveTurn2(-95);
-Conveyor.move(-127);
-Intake.move(-127);
-driveStraightSlow(800, 60);
-imu.tare();
-driveTurn2(-80);
-driveStraightSlow(525, 70);
-delay(400);
-Conveyor.move(127);
-Intake.move(127);
-delay(300);
-Conveyor.move(-127);
-Intake.move(-127);
-driveTurn2(-35);
-driveStraightSlow(90, 25);
-imu.tare();
-driveTurn2(150);
-imu.tare();
-driveTurn2(-25);
-Intake.move(127);
-Conveyor.move(127);
-driveStraightSlow(2250, 70);
-imu.tare();
-delay(300);
-driveTurn2(120);
-driveStraight(400);
-
 
       }
 //red right side// not done yet // simple one 

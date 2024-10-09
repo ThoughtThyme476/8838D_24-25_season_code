@@ -1292,3 +1292,8 @@ void wallResetF(int resetTime){
         if (count >= 20) break;
     }
 }
+
+void Rings(int motorVoltage){
+    Conveyor.move(motorVoltage);
+    Intake.move(motorVoltage);
+}

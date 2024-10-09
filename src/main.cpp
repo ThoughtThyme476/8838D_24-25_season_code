@@ -282,15 +282,12 @@ if(atn == 0) {
 	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (NEWR1 && con.get_digital(E_CONTROLLER_DIGITAL_R2))) || (NEWR1 && NEWR2)){
 	doinker = !doinker;	
 	} else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-		Intake.move(-127) ;
-		Conveyor.move(-127);
+		Rings(-127);
 	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
-		Intake.move(127);
-		Conveyor.move(127);
+		Rings(127);
 	}
 	else  {
-		Conveyor.move(0);
-		Intake.move(0);
+		Rings(0);
 	}
 
 
