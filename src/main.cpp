@@ -337,7 +337,7 @@ time += 1;
 if (time % 50 == 0 && time % 100 !=0 && time % 150 != 0){
 con.print(0, 0, "Auton: %s			", autstr);
 } else if (time % 100 == 0 && time % 150 != 0){
-con.print(1, 0, "ERROR %f 			", float (totalError));
+con.print(1, 0, "ERROR %f 			", float (error));
 } else if (time % 150 == 0){
 	con.print(2, 0, " Temp: %f 			", float (imu.get_heading()));
 }
@@ -347,6 +347,7 @@ con.print(1, 0, "ERROR %f 			", float (totalError));
 
 }
 }
+
 
 
 

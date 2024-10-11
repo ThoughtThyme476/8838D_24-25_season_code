@@ -18,12 +18,12 @@ using namespace pros;
 
 //#define
 pros::Imu imu (IMU_PORT);
-pros::Motor LF (LF_PORT, pros::E_MOTOR_GEARSET_06,true);
-pros::Motor RF (RF_PORT, pros::E_MOTOR_GEARSET_06,false);
-pros::Motor LM (LM_PORT, pros::E_MOTOR_GEARSET_06,true);
-pros::Motor RM (RM_PORT, pros::E_MOTOR_GEARSET_06,false);
-pros::Motor LB (LB_PORT, pros::E_MOTOR_GEARSET_06,true);
-pros::Motor RB (RB_PORT, pros::E_MOTOR_GEARSET_06,false);
+// pros::Motor LF (LF_PORT, pros::E_MOTOR_GEARSET_06,true);
+// pros::Motor RF (RF_PORT, pros::E_MOTOR_GEARSET_06,false);
+// pros::Motor LM (LM_PORT, pros::E_MOTOR_GEARSET_06,true);
+// pros::Motor RM (RM_PORT, pros::E_MOTOR_GEARSET_06,false);
+// pros::Motor LB (LB_PORT, pros::E_MOTOR_GEARSET_06,true);
+// pros::Motor RB (RB_PORT, pros::E_MOTOR_GEARSET_06,false);
 pros::Motor Intake(INTAKE_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Motor Conveyor(CONVEYOR_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Optical Eyesight (OPTICAL_PORT);
