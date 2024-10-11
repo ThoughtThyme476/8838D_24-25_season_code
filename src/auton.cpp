@@ -14,39 +14,19 @@ void autonomous() {
     
 if(atn == 0){ //change to 0
 
-//driving forward from alliance stake
-driveStraightSlow(700, 60);
-//120 into mobile goal
-driveTurn2(120);
-//drive straight a lil
-driveStraightSlow(-750, 70);
-//arc into goal and clamp
-driveArcL(-25, 1500, 2000);
-driveClampS(-500, 75, 70);
-imu.tare();
-//getting rings to the left of the goal
-driveTurn2(80);
-Rings(-127);
-driveStraightSlow(1100, 90);
-delay(100);
-imu.tare();
-//rest is under testing
-driveStraight2(-500);
-driveTurn2(30);
-driveArcR(90, 200, 500);
+//
 
-
-// driveStraight2(150);
-// delay(300);
-// TwoBar.set_value(true);
-// delay(300);
-// driveStraightSlow(225, 50);
-// TwoBar.set_value(false);
-// delay(200);
-// driveClampS(-1500,100, 50);
-// driveTurn2(170);
-// driveStraightC(300);
-// driveArcLF(40, 150, 3000);
+driveStraight2(150);
+delay(300);
+TwoBar.set_value(true);
+delay(300);
+driveStraightSlow(225, 50);
+TwoBar.set_value(false);
+delay(200);
+driveClampS(-1500,100, 50);
+driveTurn2(170);
+driveStraightC(300);
+driveArcLF(40, 150, 3000);
 
 ////////////////////////////////Old Auton
 // driveStraightSlow(-650, 70);
