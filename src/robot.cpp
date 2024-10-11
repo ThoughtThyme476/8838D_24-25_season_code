@@ -18,12 +18,12 @@ using namespace pros;
 
 //#define
 pros::Imu imu (IMU_PORT);
-// pros::Motor LF (LF_PORT, pros::E_MOTOR_GEARSET_06,true);
-// pros::Motor RF (RF_PORT, pros::E_MOTOR_GEARSET_06,false);
-// pros::Motor LM (LM_PORT, pros::E_MOTOR_GEARSET_06,true);
-// pros::Motor RM (RM_PORT, pros::E_MOTOR_GEARSET_06,false);
-// pros::Motor LB (LB_PORT, pros::E_MOTOR_GEARSET_06,true);
-// pros::Motor RB (RB_PORT, pros::E_MOTOR_GEARSET_06,false);
+pros::Motor LF (LF_PORT, pros::E_MOTOR_GEARSET_06,true);
+pros::Motor RF (RF_PORT, pros::E_MOTOR_GEARSET_06,false);
+pros::Motor LM (LM_PORT, pros::E_MOTOR_GEARSET_06,true);
+pros::Motor RM (RM_PORT, pros::E_MOTOR_GEARSET_06,false);
+pros::Motor LB (LB_PORT, pros::E_MOTOR_GEARSET_06,true);
+pros::Motor RB (RB_PORT, pros::E_MOTOR_GEARSET_06,false);
 pros::Motor Intake(INTAKE_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Motor Conveyor(CONVEYOR_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Optical Eyesight (OPTICAL_PORT);
@@ -33,7 +33,7 @@ pros::Optical Eyesight (OPTICAL_PORT);
 pros::ADIDigitalOut Mogo ('D', false);
 pros::ADIDigitalOut TwoBar ('E', false);
 pros::ADIDigitalOut DaSorter ('B', false);
-pros::ADIDigitalOut Doinker ('H', false);
+pros::ADIDigitalOut Doinker ('H', true);
 pros::ADIDigitalIn selec ('C');
 pros::ADIAnalogIn DistanceSense ('A');
 pros::Controller con (pros::E_CONTROLLER_MASTER);

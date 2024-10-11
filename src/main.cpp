@@ -167,7 +167,7 @@ void opcontrol() {
 	bool tankToggle = false;
 	bool PistonsForMogo = false;
 	bool twoBar = false;
-	bool doinker = false;
+	bool doinker = true;
 	bool NEWR1 = false;
 	bool NEWR2 = false;
 	int time = 0;
@@ -300,13 +300,6 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
 }
 Mogo.set_value(PistonsForMogo);
 
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
-	doinker = !doinker;
-}
-Doinker.set_value(doinker);
-
-
-
 
 if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
 	twoBar = !twoBar;
@@ -326,6 +319,7 @@ if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
 	// driveArcL(90, 650, 30000);
 	// 	setPosition(0,0,0); 
 	// 	while(true){
+	//
 	// 		odometry();
 // 		delay(1);
 // 	}

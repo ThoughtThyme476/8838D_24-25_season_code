@@ -259,12 +259,12 @@ void driveStraight(int target) {
         chasMove((voltage + headingError), (voltage + headingError), (voltage + headingError), (voltage - headingError), (voltage - headingError),(voltage - headingError));
         if (abs(target - encoderAVG) <= 4) count++;
         if (count >= 20 || time2 > timeout){
-            break;
+//            break;
         }
 
         delay(10);
         if(time2 % 50 == 0 && time2 % 100 != 0 && time2 % 150!= 0){
-            con.print(0,0, "ERROR: %f           ", float(error));
+            con.print(0,0, "ERROR: %f           ", float (error));
         }
          if(time2 % 50 == 0 && time2 % 100 != 0){
              con.print(2,0, "EncoderAVG: %f           ", float(LF.get_encoder_units()));
