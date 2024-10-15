@@ -18,10 +18,10 @@ if(atn == 0){ //change to 0
 
 driveStraight2(150);
 delay(300);
-TwoBar.set_value(true);
+//lift
 delay(300);
 driveStraightSlow(225, 50);
-TwoBar.set_value(false);
+//lift
 delay(200);
 driveClampS(-1500,100, 50);
 driveTurn2(170);

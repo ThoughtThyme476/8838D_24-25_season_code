@@ -305,21 +305,25 @@ Doinker.set_value(doinker);
 
 
 
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
-	twoBar = !twoBar;
-}
 
-	TwoBar.set_value(twoBar);
 
 // if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
 // while(true){
 // 	Odometry2();
-// 	delay(1);
+// 	delay(10);
 // }
 // }
 
-//if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
-	// driveStraight(250);
+if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
+	Snake.move(-127);
+} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
+	Snake.move(127);
+} else
+	Snake.brake();
+
+
+// if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
+// 	driveStraight(1000);
 	// driveArcL(90, 650, 30000);
 	// 	setPosition(0,0,0); 
 	// 	while(true){
@@ -343,6 +347,7 @@ con.print(1, 0, "ERROR %f 			", float (totalError));
 
 
 }
+//}
 
 
 
