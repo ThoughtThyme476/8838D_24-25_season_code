@@ -292,15 +292,15 @@ if(atn == 0) {
 
 
 
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
 	PistonsForMogo = !PistonsForMogo;
 }
 Mogo.set_value(PistonsForMogo);
-
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
-	doinker = !doinker;
-}
-Doinker.set_value(doinker);
+////////////////////////////////////////////////////////////// make this a piston flip out 
+// if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
+// 	doinker = !doinker;
+// }
+// Doinker.set_value(doinker);
 
 
 
