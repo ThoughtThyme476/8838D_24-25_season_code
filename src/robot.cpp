@@ -10,10 +10,10 @@ using namespace pros;
 #define RM_PORT 5 //correct
 #define LB_PORT 3 //correct
 #define RB_PORT 7 //correct    
-#define IMU_PORT 11 // plugged in
+#define IMU_PORT 12 // plugged in
 #define INTAKE_PORT 8 //front roller
 #define CONVEYOR_PORT 9 //hooks 
-#define SNAKE_PORT 20 //lift
+#define SNAKE_PORT 11 //lift
 #define OPTICAL_PORT 19 // color switch, mabye 
 
 

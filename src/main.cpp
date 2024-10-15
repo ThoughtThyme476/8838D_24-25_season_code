@@ -301,25 +301,22 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
 Mogo.set_value(PistonsForMogo);
 
 
-
-
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
+	Snake.move(-127);
+} else if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
+	Snake.move(127);
+} else{
+	Snake.brake();
+}
 // if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
 // while(true){
 // 	Odometry2();
-// 	delay(10);
+// 	delay(1);
 // }
 // }
-
-if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
-	Snake.move(-127);
-} else if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
-	Snake.move(127);
-} else
-	Snake.brake();
-
 
 // if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-// 	driveStraight(1000);
+// 	driveStraight(250);
 	// driveArcL(90, 650, 30000);
 	// 	setPosition(0,0,0); 
 	// 	while(true){
@@ -344,7 +341,7 @@ con.print(1, 0, "ERROR %f 			", float (error));
 
 
 }
-//}
+
 
 
 
