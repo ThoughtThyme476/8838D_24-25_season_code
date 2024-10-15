@@ -167,7 +167,7 @@ void opcontrol() {
 	bool tankToggle = false;
 	bool PistonsForMogo = false;
 	bool twoBar = false;
-	bool doinker = true;
+	bool doinker = false;
 	bool NEWR1 = false;
 	bool NEWR2 = false;
 	int time = 0;
@@ -279,7 +279,7 @@ if(atn == 0) {
 
 /////////////////////////////////////////////
 	
-	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (NEWR1 && con.get_digital(E_CONTROLLER_DIGITAL_R2))) || (NEWR1 && NEWR2)){
+	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR1) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR2)) || (NEWR1 && NEWR2)){
 	doinker = !doinker;	
 	} else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
 		Rings(-127);
@@ -292,13 +292,17 @@ if(atn == 0) {
 
 
 
-
-
-
 if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
 	PistonsForMogo = !PistonsForMogo;
 }
 Mogo.set_value(PistonsForMogo);
+
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
+	doinker = !doinker;
+}
+Doinker.set_value(doinker);
+
+
 
 
 if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
@@ -307,19 +311,18 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
 
 	TwoBar.set_value(twoBar);
 
-if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
-while(true){
-	Odometry2();
-	delay(10);
-}
-}
+// if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
+// while(true){
+// 	Odometry2();
+// 	delay(1);
+// }
+// }
 
-if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-	driveStraight(1000);
+//if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
+	// driveStraight(250);
 	// driveArcL(90, 650, 30000);
 	// 	setPosition(0,0,0); 
 	// 	while(true){
-	//
 	// 		odometry();
 // 		delay(1);
 // 	}
@@ -331,7 +334,7 @@ time += 1;
 if (time % 50 == 0 && time % 100 !=0 && time % 150 != 0){
 con.print(0, 0, "Auton: %s			", autstr);
 } else if (time % 100 == 0 && time % 150 != 0){
-con.print(1, 0, "ERROR %f 			", float (error));
+con.print(1, 0, "ERROR %f 			", float (totalError));
 } else if (time % 150 == 0){
 	con.print(2, 0, " Temp: %f 			", float (imu.get_heading()));
 }
@@ -339,7 +342,6 @@ con.print(1, 0, "ERROR %f 			", float (error));
 }
 
 
-}
 }
 
 
