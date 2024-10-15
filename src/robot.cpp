@@ -13,6 +13,7 @@ using namespace pros;
 #define IMU_PORT 11 // plugged in
 #define INTAKE_PORT 8 //front roller
 #define CONVEYOR_PORT 9 //hooks 
+#define SNAKE_PORT 20 //lift
 #define OPTICAL_PORT 19 // color switch, mabye 
 
 
@@ -27,9 +28,7 @@ pros::Motor RB (RB_PORT, pros::E_MOTOR_GEARSET_06,false);
 pros::Motor Intake(INTAKE_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Motor Conveyor(CONVEYOR_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Optical Eyesight (OPTICAL_PORT);
-
-
-
+pros::Motor Snake(SNAKE_PORT, pros::E_MOTOR_GEARSET_18);
 pros::ADIDigitalOut Mogo ('D', false);
 pros::ADIDigitalOut TwoBar ('E', false);
 pros::ADIDigitalOut DaSorter ('B', false);
