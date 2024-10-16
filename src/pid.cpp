@@ -726,7 +726,7 @@ if(init_heading > 180) {
     
 }
 
-void driveClampS(int target, int clampDistance, int speed) {
+void driveClampS(int target, int clampDistanceFromTarget, int speed) {
 
     int timeout = 30000;
 
@@ -784,7 +784,7 @@ if(init_heading > 180) {
             voltage = -127 * double(speed)/100;
         }
 
-  if(abs(target - encoderAVG) < clampDistance){
+  if(abs(target - encoderAVG) < clampDistanceFromTarget){
             Mogo.set_value(true);
         }
 
