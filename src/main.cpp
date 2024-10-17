@@ -170,9 +170,11 @@ void opcontrol() {
 	bool doinker = false;
 	bool NEWR1 = false;
 	bool NEWR2 = false;
+	double lift_angle = 0;
 	int time = 0;
 	string red;
 	string blue;
+	
 	int color_selec = 1;
 	Eyesight.set_led_pwm(100);
 while (true){
@@ -291,7 +293,6 @@ if(atn == 0) {
 	}
 
 
-
 if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
 	PistonsForMogo = !PistonsForMogo;
 }
@@ -305,12 +306,15 @@ Mogo.set_value(PistonsForMogo);
 
 
 
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
+if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
 	Snake.move(-127);
-} else if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
+	lift_angle = Snake.get_position();
+} else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
 	Snake.move(127);
+	lift_angle = Snake.get_position();
 } else{
-	Snake.brake();
+	setConstants(LIFT_KP, LIFT_KI, LIFT_KD);
+	Snake.move(calcPID(lift_angle, Snake.get_position(), 0, 0));
 }
 // if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
 // while(true){

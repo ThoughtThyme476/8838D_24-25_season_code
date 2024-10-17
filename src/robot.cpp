@@ -28,7 +28,7 @@ pros::Motor RB (RB_PORT, pros::E_MOTOR_GEARSET_06,false);
 pros::Motor Intake(INTAKE_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Motor Conveyor(CONVEYOR_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Optical Eyesight (OPTICAL_PORT);
-pros::Motor Snake(SNAKE_PORT, pros::E_MOTOR_GEARSET_18);
+pros::Motor Snake(SNAKE_PORT, pros::E_MOTOR_GEARSET_18, false);
 pros::ADIDigitalOut Mogo ('D', false);
 pros::ADIDigitalOut TwoBar ('E', false);
 pros::ADIDigitalOut DaSorter ('B', false);
