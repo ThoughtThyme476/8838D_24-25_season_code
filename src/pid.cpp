@@ -248,7 +248,7 @@ void driveStraight(int target) {
     
     
     setConstants(HEADING_KP, HEADING_KI, HEADING_KD);  
-        headingError = calcPID2(init_heading, position, HEADING_INTEGRAL_KI, HEADING_MAX_INTEGRAL);
+    headingError = calcPID2(init_heading, position, HEADING_INTEGRAL_KI, HEADING_MAX_INTEGRAL);
         
         if(voltage > 127){
             voltage = 127;

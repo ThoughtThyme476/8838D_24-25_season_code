@@ -279,7 +279,7 @@ if(atn == 0) {
 
 /////////////////////////////////////////////
 	
-	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR1) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR2)) || (NEWR1 && NEWR2)){
+	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
 	doinker = !doinker;	
 	} else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
 		Rings(-127);
@@ -319,16 +319,11 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
 // }
 // }
 
-// if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-// 	driveStraight(250);
-	// driveArcL(90, 650, 30000);
-	// 	setPosition(0,0,0); 
-	// 	while(true){
-	// 		odometry();
-// 		delay(1);
-// 	}
-// driveStraight(1000);
- //}
+if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
+driveStraight(15);
+}
+
+
 pros::delay(1);
 time += 1;
 
@@ -337,13 +332,14 @@ con.print(0, 0, "Auton: %s			", autstr);
 } else if (time % 100 == 0 && time % 150 != 0){
 con.print(1, 0, "ERROR %f 			", float (totalError));
 } else if (time % 150 == 0){
-	con.print(2, 0, " Temp: %f 			", float (imu.get_heading()));
+	con.print(2, 0, " Temp: %f 			", float (LF.get_position()));
 }
 
 }
 
 
 }
+
 
 
 
