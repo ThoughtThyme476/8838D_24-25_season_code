@@ -16,6 +16,7 @@ extern pros::Motor Snake;
 extern pros::ADIDigitalOut Mogo;
 extern pros::ADIDigitalOut DaSorter;
 extern pros::ADIDigitalOut Doinker;
+extern pros::ADIDigitalOut Flipout;
 extern pros::Controller con; 
 extern pros::Imu imu;
 extern pros::Optical Eyesight;

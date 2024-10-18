@@ -167,6 +167,7 @@ void opcontrol() {
 	bool tankToggle = false;
 	bool PistonsForMogo = false;
 	bool twoBar = false;
+	bool flipout = false;
 	bool doinker = false;
 	bool NEWR1 = false;
 	bool NEWR2 = false;
@@ -293,16 +294,21 @@ if(atn == 0) {
 	}
 
 
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
 	PistonsForMogo = !PistonsForMogo;
 }
 Mogo.set_value(PistonsForMogo);
 ////////////////////////////////////////////////////////////// make this a piston flip out 
-// if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
-// 	doinker = !doinker;
-// }
-// Doinker.set_value(doinker);
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
+	doinker = !doinker;
+}
+Doinker.set_value(doinker);
 
+
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)){
+	flipout = !flipout;
+}
+Flipout.set_value(flipout);
 
 
 
@@ -324,7 +330,7 @@ if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
 // }
 
 if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-driveStraight(15);
+driveTurn(10);
 }
 
 
@@ -334,9 +340,9 @@ time += 1;
 if (time % 50 == 0 && time % 100 !=0 && time % 150 != 0){
 con.print(0, 0, "Auton: %s			", autstr);
 } else if (time % 100 == 0 && time % 150 != 0){
-con.print(1, 0, "ERROR %f 			", float (totalError));
+con.print(1, 0, "ERROR %f 			", float (error));
 } else if (time % 150 == 0){
-	con.print(2, 0, " Temp: %f 			", float (LF.get_position()));
+	con.print(2, 0, " Time: %f 			", float (time2));
 }
 
 }

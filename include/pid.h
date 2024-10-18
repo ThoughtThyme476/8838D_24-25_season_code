@@ -31,9 +31,9 @@ extern void Rings(int motorVoltage);
 extern double totalError;
 
 // straight stuff
-#define STRAIGHT_KP 2//3
+#define STRAIGHT_KP 1.5//3
 #define STRAIGHT_KI 0
-#define STRAIGHT_KD 9
+#define STRAIGHT_KD 3
 #define STRAIGHT_INTEGRAL_KI 40
 #define STRAIGHT_MAX_INTEGRAL 14.5
 
@@ -59,8 +59,8 @@ extern double totalError;
 #define ARC_HEADING_MAX_INTEGRAL 0
 #define ARC_HEADING_INTEGRAL_KI 0
 
-#define LIFT_KP 1
-# define LIFT_KI 0 
-# define LIFT_KD 0 
+#define LIFT_KP 1.5
+# define LIFT_KI 0.6
+# define LIFT_KD 70
 
 #endif
