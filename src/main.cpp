@@ -227,28 +227,28 @@ if(atn == 0) {
 		autstr = "BlueRight";
 	}
 	if(atn == 2) {
-		autstr = "RedLeft";
+		autstr = "RedRight";
 	}
 	if(atn == 3) {
 		autstr = "BlueLeft";
 	}
 	if(atn == 4) {
-		autstr = "RedRightElims";
-	}
-	if(atn == 5) {
 		autstr = "RedLeftElims";
 	}
-	if(atn == 6) {
+	if(atn == 5) {
 		autstr = "BlueRightElims";
 	}
+	if(atn == 6) {
+		autstr = "RedRightElims";
+	}
 	if(atn == 7) {
-		autstr = "BlueLeftElimsElims";
+		autstr = "BlueLeftElims";
 	}
 	if(atn == 8) {
 		autstr = "Skills";
 	}
 	if(atn == 9) {
-		autstr = "NoMove";
+		autstr = "Safety";
 	}
 	else if(atn == 10){
 		atn = 0;

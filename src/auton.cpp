@@ -16,17 +16,27 @@ if(atn == 0){ //change to 0
 
 //
 
-driveStraight2(150);
-delay(300);
+driveStraight2(200);
+driveTurn2(-90);
+driveTurn2(-20);
+Conveyor.move(127);
+driveTurn2(-45);
+
+
+
+
+
+// driveStraight2(150);
+// delay(300);
 //lift
-delay(300);
-driveStraightSlow(225, 50);
+// delay(300);
+// driveStraightSlow(225, 50);
 //lift
-delay(200);
-driveClampS(-1500,100, 50);
-driveTurn2(170);
-driveStraightC(300);
-driveArcLF(40, 150, 3000);
+// delay(200);
+// driveClampS(-1500,100, 50);
+// driveTurn2(170);
+// driveStraightC(300);
+// driveArcLF(40, 150, 3000);
 
 ////////////////////////////////Old Auton
 // driveStraightSlow(-650, 70);
@@ -86,10 +96,10 @@ driveArcLF(40, 150, 3000);
       if(atn == 2){ 
         driveClampS(1000, 100, 90);
         driveStraight2(100);
-        Intake.move(127);
+        Conveyor.move(127);
         driveTurn2(90);
         Mogo.set_value(false);
-        Intake.move(127);
+        Conveyor.move(127);
         driveStraight2(250);
         driveTurn2(-45);
         driveClampS(-400, 100, 90);
@@ -109,10 +119,10 @@ driveArcLF(40, 150, 3000);
       if(atn == 3){
            driveClampS(-1000, 100, 90);
         driveStraight2(-100);
-        Intake.move(127);
+        Conveyor.move(127);
         driveTurn2(-90);
         Mogo.set_value(false);
-        Intake.move(127);
+        Conveyor.move(127);
         driveStraight2(-250);
         driveTurn2(45);
         driveClampS(400, 100, 90);
@@ -138,10 +148,10 @@ driveArcLF(40, 150, 3000);
     if(atn == 6) {
         driveClampS(1000, 100, 90);
         driveStraight2(100);
-        Intake.move(127);
+        Conveyor.move(127);
         driveTurn2(90);
         Mogo.set_value(false);
-        Intake.move(127);
+        Conveyor.move(127);
         driveStraight2(250);
         driveTurn2(-45);
         driveClampS(-400, 100, 90);
@@ -158,10 +168,10 @@ driveArcLF(40, 150, 3000);
     if(atn == 7) {
         driveClampS(-1000, 100, 90);
         driveStraight2(-100);
-        Intake.move(127);
+        Conveyor.move(127);
         driveTurn2(-90);
         Mogo.set_value(false);
-        Intake.move(127);
+        Conveyor.move(127);
         driveStraight2(-250);
         driveTurn2(45);
         driveClampS(400, 100, 90);

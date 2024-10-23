@@ -183,14 +183,12 @@ if (DaSortMaster == true){
 		ringTime=0;
 
 	} else if (ringTime>= 1000){
-		Intake.move(-127);
 		Conveyor.move(-127);
+	
 	} else {
-		Intake.move(127);
 		Conveyor.move(127);
 	}
 	} else{
-		Intake.move(127);
 		Conveyor.move(127);
 	} 
 }
@@ -1293,7 +1291,6 @@ void wallResetF(int resetTime){
     }
 }
 
-void Rings(int motorVoltage){
+void Ring(int motorVoltage){
     Conveyor.move(motorVoltage);
-    Intake.move(motorVoltage);
 }
