@@ -19,7 +19,7 @@ extern void driveStraight2(int target);
 extern void driveStraightC(int target);
 extern void driveClamp(int target, int clampDistance);
 extern void driveStraightSlow(int target, int timeout);
-extern void driveClampS(int target, int clampDistance, int timeout);
+extern void driveClampS(int target, int clampDistanceFromTarget, int timeout);
 extern void driveArcL(double theta, double radius, int timeout);
 extern void driveArcR(double theta, double radius, int timeout);
 extern void driveArcLF(double theta, double radius, int timeout);
@@ -31,9 +31,9 @@ extern void Rings(int motorVoltage);
 extern double totalError;
 
 // straight stuff
-#define STRAIGHT_KP 2.5//3
+#define STRAIGHT_KP 1.5//3
 #define STRAIGHT_KI 0
-#define STRAIGHT_KD 15
+#define STRAIGHT_KD 3
 #define STRAIGHT_INTEGRAL_KI 40
 #define STRAIGHT_MAX_INTEGRAL 14.5
 
@@ -59,6 +59,8 @@ extern double totalError;
 #define ARC_HEADING_MAX_INTEGRAL 0
 #define ARC_HEADING_INTEGRAL_KI 0
 
-
+#define LIFT_KP 1.5
+# define LIFT_KI 0.6
+# define LIFT_KD 70
 
 #endif

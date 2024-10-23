@@ -167,12 +167,15 @@ void opcontrol() {
 	bool tankToggle = false;
 	bool PistonsForMogo = false;
 	bool twoBar = false;
-	bool doinker = true;
+	bool flipout = false;
+	bool doinker = false;
 	bool NEWR1 = false;
 	bool NEWR2 = false;
+	double lift_angle = 0;
 	int time = 0;
 	string red;
 	string blue;
+	
 	int color_selec = 1;
 	Eyesight.set_led_pwm(100);
 while (true){
@@ -279,7 +282,7 @@ if(atn == 0) {
 
 /////////////////////////////////////////////
 	
-	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (NEWR1 && con.get_digital(E_CONTROLLER_DIGITAL_R2))) || (NEWR1 && NEWR2)){
+	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
 	doinker = !doinker;	
 	} else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
 		Rings(-127);
@@ -291,40 +294,46 @@ if(atn == 0) {
 	}
 
 
-
-
-
-
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
 	PistonsForMogo = !PistonsForMogo;
 }
 Mogo.set_value(PistonsForMogo);
-
-
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
-	twoBar = !twoBar;
+////////////////////////////////////////////////////////////// make this a piston flip out 
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)){
+	doinker = !doinker;
 }
+Doinker.set_value(doinker);
 
-	TwoBar.set_value(twoBar);
 
-if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
-while(true){
-	Odometry2();
-	delay(10);
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
+	flipout = !flipout;
 }
+Flipout.set_value(flipout);
+
+
+
+if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
+	Snake.move(-127);
+	lift_angle = Snake.get_position();
+} else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
+	Snake.move(127);
+	lift_angle = Snake.get_position();
+} else{
+	setConstants(LIFT_KP, LIFT_KI, LIFT_KD);
+	Snake.move(calcPID(lift_angle, Snake.get_position(), 0, 0));
 }
+// if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
+// while(true){
+// 	Odometry2();
+// 	delay(1);
+// }
+// }
 
 if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-	driveStraight(1000);
-	// driveArcL(90, 650, 30000);
-	// 	setPosition(0,0,0); 
-	// 	while(true){
-	//
-	// 		odometry();
-// 		delay(1);
-// 	}
-// driveStraight(1000);
- //}
+driveTurn(10);
+}
+
+
 pros::delay(1);
 time += 1;
 
@@ -333,14 +342,15 @@ con.print(0, 0, "Auton: %s			", autstr);
 } else if (time % 100 == 0 && time % 150 != 0){
 con.print(1, 0, "ERROR %f 			", float (error));
 } else if (time % 150 == 0){
-	con.print(2, 0, " Temp: %f 			", float (imu.get_heading()));
+	con.print(2, 0, " Time: %f 			", float (time2));
 }
 
 }
 
 
 }
-}
+
+
 
 
 

@@ -18,10 +18,10 @@ if(atn == 0){ //change to 0
 
 driveStraight2(150);
 delay(300);
-TwoBar.set_value(true);
+//lift
 delay(300);
 driveStraightSlow(225, 50);
-TwoBar.set_value(false);
+//lift
 delay(200);
 driveClampS(-1500,100, 50);
 driveTurn2(170);
@@ -83,8 +83,20 @@ driveArcLF(40, 150, 3000);
       }
 //red right side// not done yet // simple one 
 
-      if(atn == 2){ //change to two
-      driveStraight2(500);
+      if(atn == 2){ 
+        driveClampS(1000, 100, 90);
+        driveStraight2(100);
+        Intake.move(127);
+        driveTurn2(90);
+        Mogo.set_value(false);
+        Intake.move(127);
+        driveStraight2(250);
+        driveTurn2(-45);
+        driveClampS(-400, 100, 90);
+        Conveyor.move(127);
+        driveTurn2(90);
+        driveStraightSlow(200, 80);
+      
     //    driveStraightC(-1750);
     //    driveStraightSlow(-250, 50);
     //    driveTurn2(50);
@@ -95,7 +107,18 @@ driveArcLF(40, 150, 3000);
 //blue left side// not done // simple one
 
       if(atn == 3){
-
+           driveClampS(-1000, 100, 90);
+        driveStraight2(-100);
+        Intake.move(127);
+        driveTurn2(-90);
+        Mogo.set_value(false);
+        Intake.move(127);
+        driveStraight2(-250);
+        driveTurn2(45);
+        driveClampS(400, 100, 90);
+        Conveyor.move(127);
+        driveTurn2(-90);
+        driveStraightSlow(-200, 80);
       }
 
 //red left side// not done // elims
@@ -113,13 +136,40 @@ driveArcLF(40, 150, 3000);
 //red right side // not done // elims
 
     if(atn == 6) {
-
+        driveClampS(1000, 100, 90);
+        driveStraight2(100);
+        Intake.move(127);
+        driveTurn2(90);
+        Mogo.set_value(false);
+        Intake.move(127);
+        driveStraight2(250);
+        driveTurn2(-45);
+        driveClampS(-400, 100, 90);
+        Conveyor.move(127);
+       driveTurn2(-30);
+       Doinker.set_value(true);
+       driveStraight2(1000);
+       driveTurn2(160);
+      
     }
 
 //blue left side // not done // elims
 
     if(atn == 7) {
-
+        driveClampS(-1000, 100, 90);
+        driveStraight2(-100);
+        Intake.move(127);
+        driveTurn2(-90);
+        Mogo.set_value(false);
+        Intake.move(127);
+        driveStraight2(-250);
+        driveTurn2(45);
+        driveClampS(400, 100, 90);
+        Conveyor.move(127);
+       driveTurn2(30);
+       Doinker.set_value(true);
+       driveStraight2(-1000);
+       driveTurn2(-160);
     }
 
 //skills // not done
