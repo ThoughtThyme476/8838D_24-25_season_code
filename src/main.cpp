@@ -167,7 +167,6 @@ void opcontrol() {
 	bool tankToggle = false;
 	bool PistonsForMogo = false;
 	bool twoBar = false;
-	bool flipout = false;
 	bool doinker = false;
 	bool NEWR1 = false;
 	bool NEWR2 = false;
@@ -206,9 +205,9 @@ while (true){
  RB.move(con.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y));
 	}
 	if (arcToggle){
- int RX = con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
+  int RX = con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
   int power = con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-  int turn = int(abs(RX) * RX / 75);
+  int turn = int(abs(RX) * RX / 200);
   int left = power + turn;
   int right = power - turn;
 
@@ -282,17 +281,24 @@ if(atn == 0) {
 
 /////////////////////////////////////////////
 	
-	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
-	doinker = !doinker;	
-	} else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-		Rings(-127);
-	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
-		Rings(127);
-	}
-	else  {
-		Rings(0);
-	}
+	// if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
+	// doinker = !doinker;	
+	// } else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+	// 	Rings(-127);
+	// } else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
+	// 	Rings(127);
+	// }
+	// else  {
+	// 	Rings(0);
+	// }
 
+	if (con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+	Conveyor.move(-127);
+	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
+	Conveyor.move(127);
+	} else {
+	Conveyor.move(0);
+	}
 
 if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
 	PistonsForMogo = !PistonsForMogo;
@@ -305,10 +311,11 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)){
 Doinker.set_value(doinker);
 
 
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
-	flipout = !flipout;
-}
-Flipout.set_value(flipout);
+
+// if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
+// 	flipout = !flipout;
+// }
+// Flipout.set_value(flipout);
 
 
 
@@ -322,16 +329,19 @@ if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
 	setConstants(LIFT_KP, LIFT_KI, LIFT_KD);
 	Snake.move(calcPID(lift_angle, Snake.get_position(), 0, 0));
 }
-// if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
-// while(true){
-// 	Odometry2();
-// 	delay(1);
-// }
-// }
 
-if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-driveTurn(10);
+
+
+
+
+if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
+	driveStraight2(100);
 }
+}
+
+// if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
+// driveTurn(10);
+// }
 
 
 pros::delay(1);
@@ -348,7 +358,7 @@ con.print(1, 0, "ERROR %f 			", float (error));
 }
 
 
-}
+
 
 
 

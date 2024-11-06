@@ -5,14 +5,14 @@
 using namespace pros;
 
 #define LF_PORT 1 //correct
-#define RF_PORT 4 //correct 
+#define RF_PORT 3 //correct 
 #define LM_PORT 2 //correct
 #define RM_PORT 5 //correct
-#define LB_PORT 3 //correct
+#define LB_PORT 13 //correct
 #define RB_PORT 7 //correct    
 #define IMU_PORT 12 // plugged in
 // #define INTAKE_PORT 8 //front roller
-#define CONVEYOR_PORT 9 //hooks 
+#define CONVEYOR_PORT 8 //hooks 
 #define SNAKE_PORT 11 //lift
 #define OPTICAL_PORT 19 // color switch, mabye 
 
@@ -31,10 +31,8 @@ pros::Motor Conveyor(CONVEYOR_PORT, pros::E_MOTOR_GEARSET_06);
 pros::Optical Eyesight (OPTICAL_PORT);
 pros::Motor Snake(SNAKE_PORT, pros::E_MOTOR_GEARSET_18, false);
 pros::ADIDigitalOut Mogo ('D', false);
-pros::ADIDigitalOut TwoBar ('E', false);
 pros::ADIDigitalOut DaSorter ('B', false);
-pros::ADIDigitalOut Doinker ('H', true);
-pros::ADIDigitalOut Flipout ('G', false);
+pros::ADIDigitalOut Doinker ('G', true);
 pros::ADIDigitalIn selec ('C');
 pros::ADIAnalogIn DistanceSense ('A');
 pros::Controller con (pros::E_CONTROLLER_MASTER);
