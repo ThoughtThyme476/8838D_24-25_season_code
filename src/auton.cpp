@@ -13,14 +13,23 @@ void autonomous() {
 //Red left side
     
 if(atn == 0){ //change to 0
+driveStraight2(-450);
+driveTurn2(90);
+driveStraight2(-175);
+Conveyor.move(-127);
+delay(500);
+driveStraight2(500);
+
+
+
 
 //
 
-driveStraight2(200);
-driveTurn2(-90);
-driveTurn2(-20);
-Conveyor.move(127);
-driveTurn2(-45);
+// driveStraight2(200);
+// driveTurn2(-90);
+// driveTurn2(-20);
+// Conveyor.move(127);
+// driveTurn2(-45);
 
 
 
@@ -94,41 +103,77 @@ driveTurn2(-45);
 //red right side// not done yet // simple one 
 
       if(atn == 2){ 
-        driveClampS(1000, 100, 90);
-        driveStraight2(100);
+        driveStraightC(-1200);
+        driveTurn2(-35);
+        driveClampS(-450, 10, 80);
         Conveyor.move(127);
-        driveTurn2(90);
-        Mogo.set_value(false);
-        Conveyor.move(127);
-        driveStraight2(250);
-        driveTurn2(-45);
-        driveClampS(-400, 100, 90);
-        Conveyor.move(127);
-        driveTurn2(90);
-        driveStraightSlow(200, 80);
+        driveTurn2(10);
+        Conveyor.move(-127);
+        driveStraight(900);
+        delay(400);
+        Conveyor.move(0);
+        driveTurn2(150);
+        driveStraight2(-500);
+        Mogo.set_value(false); 
+        driveStraight2(850);
+        driveTurn2(-110);
+        driveClampS(-1000, 50, 90);
+        Conveyor.move(-127);
+        delay(700);
+        imu.tare();
+        driveTurn2(-90);
+        driveStraight2(600);
+        
+        // driveTurn2(-40);
+        // Conveyor.move(127);
+        // delay(150);
+        // driveTurn2(160);
+        // Conveyor.move(0);
+        // driveClampS(200, 0, 95);
+        // Conveyor.move(127);
+
+
+
+
+
+
+        // driveStraight2(100);
+        // Conveyor.move(127);
+        // driveTurn2(90);
+        // Mogo.set_value(false);
+        // Conveyor.move(127);
+        // driveStraight2(250);
+        // driveTurn2(-45);
+        // driveClampS(-400, 100, 90);
+        // Conveyor.move(127);
+        // driveTurn2(90);
+        // driveStraightSlow(200, 80);
+
       
     //    driveStraightC(-1750);
     //    driveStraightSlow(-250, 50);
     //    driveTurn2(50);
     //    driveClampS(-250,50,30);
 
+
+
       }
 
 //blue left side// not done // simple one
 
       if(atn == 3){
-           driveClampS(-1000, 100, 90);
-        driveStraight2(-100);
-        Conveyor.move(127);
-        driveTurn2(-90);
-        Mogo.set_value(false);
-        Conveyor.move(127);
-        driveStraight2(-250);
-        driveTurn2(45);
-        driveClampS(400, 100, 90);
-        Conveyor.move(127);
-        driveTurn2(-90);
-        driveStraightSlow(-200, 80);
+        //    driveClampS(-1000, 100, 90);
+        // driveStraight2(-100);
+        // Conveyor.move(127);
+        // driveTurn2(-90);
+        // Mogo.set_value(false);
+        // Conveyor.move(127);
+        // driveStraight2(-250);
+        // driveTurn2(45);
+        // driveClampS(400, 100, 90);
+        // Conveyor.move(127);
+        // driveTurn2(-90);
+        // driveStraightSlow(-200, 80);
       }
 
 //red left side// not done // elims
@@ -146,40 +191,40 @@ driveTurn2(-45);
 //red right side // not done // elims
 
     if(atn == 6) {
-        driveClampS(1000, 100, 90);
-        driveStraight2(100);
-        Conveyor.move(127);
-        driveTurn2(90);
-        Mogo.set_value(false);
-        Conveyor.move(127);
-        driveStraight2(250);
-        driveTurn2(-45);
-        driveClampS(-400, 100, 90);
-        Conveyor.move(127);
-       driveTurn2(-30);
-       Doinker.set_value(true);
-       driveStraight2(1000);
-       driveTurn2(160);
+    //     driveClampS(1000, 100, 90);
+    //     driveStraight2(100);
+    //     Conveyor.move(127);
+    //     driveTurn2(90);
+    //     Mogo.set_value(false);
+    //     Conveyor.move(127);
+    //     driveStraight2(250);
+    //     driveTurn2(-45);
+    //     driveClampS(-400, 100, 90);
+    //     Conveyor.move(127);
+    //    driveTurn2(-30);
+    //    Doinker.set_value(true);
+    //    driveStraight2(1000);
+    //    driveTurn2(160);
       
     }
 
 //blue left side // not done // elims
 
     if(atn == 7) {
-        driveClampS(-1000, 100, 90);
-        driveStraight2(-100);
-        Conveyor.move(127);
-        driveTurn2(-90);
-        Mogo.set_value(false);
-        Conveyor.move(127);
-        driveStraight2(-250);
-        driveTurn2(45);
-        driveClampS(400, 100, 90);
-        Conveyor.move(127);
-       driveTurn2(30);
-       Doinker.set_value(true);
-       driveStraight2(-1000);
-       driveTurn2(-160);
+    //     driveClampS(-1000, 100, 90);
+    //     driveStraight2(-100);
+    //     Conveyor.move(127);
+    //     driveTurn2(-90);
+    //     Mogo.set_value(false);
+    //     Conveyor.move(127);
+    //     driveStraight2(-250);
+    //     driveTurn2(45);
+    //     driveClampS(400, 100, 90);
+    //     Conveyor.move(127);
+    //    driveTurn2(30);
+    //    Doinker.set_value(true);
+    //    driveStraight2(-1000);
+    //    driveTurn2(-160);
     }
 
 //skills // not done

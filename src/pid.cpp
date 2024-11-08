@@ -200,7 +200,7 @@ void driveStraight(int target) {
 
     double x = 0;
     x = double(abs(target));
-    timeout = (0.0000000000010191 * pow(x,5)) + (-0.000000005338 * pow(x,4)) + (0.00000985576 * pow(x,3)) + (-0.00845871 * pow(x,2)) + (3.98138 * x) + 177.882;
+    timeout = (0.000000000000151041 * pow(x,5)) + (-0.0000000011639 * pow(x,4)) + (0.00000342017 * pow(x,3)) + (-0.0000000011639 * pow(x,2)) + (3.6931 * x) + 94.3377;
 
     imu.tare();
 
@@ -298,10 +298,10 @@ void driveStraight(int target) {
     double variKD = 0;
     double variKP = 0;
     x = double(abs(target));
-    // variKD = ((-0.000000010414) * pow(x,5)) + (0.00000436151 * pow(x,4)) + (-0.000635881 * pow(x,3)) + (0.0378021 * pow(x,2)) + (-0.805858 * x) + 69.3766;
+    variKD = (0.00000000269994 * pow(x,5)) + (-0.00000165132 * pow(x,4)) + (0.000362708 * pow(x,3)) + (-0.0345279 * pow(x,2)) + (1.43381 * x) + 18.619;
     // variKP = ((0.00000000017809) * pow(x,5)) + (-0.000000087322 * pow(x,4)) + (0.000015948* pow(x,3)) + (-0.00128717 * pow(x,2)) + (0.041072 * x) + 6.7388;
-    setConstants(variKP, TURN_KI, variKD);
-    // timeout = (0.00000017585*pow(x,5)) + (0.0000801483*pow(x,4)) + (0.0128744*pow(x,3)) + (0.83763*pow(x,2)) + (-13.6245*(x)) + 476.675;
+    setConstants(TURN_KP, TURN_KI, variKD);
+    timeout = (0.00000100594 *pow(x,5)) + (-0.000366059 *pow(x,4)) + (0.0466167 *pow(x,3)) + (-2.52875 *pow(x,2)) + (61.9603 *(x)) + 0;
     imu.tare_heading();
 
     while(true) { 
@@ -319,7 +319,7 @@ void driveStraight(int target) {
 
         if (count >= 20 || time2 > timeout) {
 
-        // break;
+        break;
         }
         if(time2 % 50 == 0 && time2 % 100 != 0 && time2 % 150!= 0){
             con.print(0,0, "ERROR: %f           ", float(error));
@@ -328,7 +328,7 @@ void driveStraight(int target) {
             con.print(1,0, "EncoderAVG: %f           ", float(imu.get_heading()));
         }
          if(time2 % 50 == 0){
-            con.print(2,0, "Time2: %f           ", float(time2));
+            con.print(2,0, "time2: %f          ", float(time2));
         }
         
         time2 += 10;
@@ -376,12 +376,12 @@ void driveStraight(int target) {
     int timeout = 1000000;
     double x = 0;
     double variKD = 0;
-    double variKP = 0;
+    //double variKP = 0;
     x = double(abs(turnv));
-    timeout = (0.00000017585*pow(x,5)) + (0.0000801483*pow(x,4)) + (0.0128744*pow(x,3)) + (0.83763*pow(x,2)) + (-13.6245*(x)) + 476.675;
-    variKD = ((-0.000000010414) * pow(x,5)) + (0.00000436151 * pow(x,4)) + (-0.000635881 * pow(x,3)) + (0.0378021 * pow(x,2)) + (-0.805858 * x) + 69.3766;
-    variKP = ((0.00000000017809) * pow(x,5)) + (-0.000000087322 * pow(x,4)) + (0.000015948* pow(x,3)) + (-0.00128717 * pow(x,2)) + (0.041072 * x) + 6.7388;
-    setConstants(variKP, TURN_KI, variKD);
+    timeout = (0.00000100594 *pow(x,5)) + (-0.000366059 *pow(x,4)) + (0.0466167 *pow(x,3)) + (-2.52875 *pow(x,2)) + (61.9603 *(x)) + 0;
+    variKD = (0.00000000269994 * pow(x,5)) + (-0.00000165132 * pow(x,4)) + (0.000362708 * pow(x,3)) + (-0.0345279 * pow(x,2)) + (1.43381 * x) + 18.619;
+    // variKP = ((0.00000000017809) * pow(x,5)) + (-0.000000087322 * pow(x,4)) + (0.000015948* pow(x,3)) + (-0.00128717 * pow(x,2)) + (0.041072 * x) + 6.7388;
+    setConstants(TURN_KP, TURN_KI, variKD);
     while(true) { 
     position = imu.get_heading();
      if(position > 180){
@@ -422,7 +422,7 @@ void driveStraight(int target) {
             con.print(2,0, "EncoderAVG: %f           ", float(imu.get_heading()));
         }
          if(time2 % 50 == 0){
-            con.print(1,0, "Time2: %f           ", float(time2));
+            con.print(1,0, "Time: %f           ", float(time2));
         }
         
         time2 += 10;
@@ -443,7 +443,7 @@ void driveStraight2(int target) {
 
     double x = 0;
     x = double(abs(target));
-    timeout = (0.0000000000010191 * pow(x,5)) + (-0.000000005338 * pow(x,4)) + (0.00000985576 * pow(x,3)) + (-0.00845871 * pow(x,2)) + (3.98138 * x) + 177.882;
+     timeout = (0.000000000000151041 * pow(x,5)) + (-0.0000000011639 * pow(x,4)) + (0.00000342017 * pow(x,3)) + (-0.0000000011639 * pow(x,2)) + (3.6931 * x) + 94.3377;
 
     double voltage;
     double encoderAVG;
@@ -503,13 +503,13 @@ if(init_heading > 180) {
 
         delay(10);
         if(time2 % 50 == 0 && time2 % 100 != 0 && time2 % 150!= 0){
-            con.print(0,0, "time2: %f           ", float(time2));
+            con.print(0,0, "ERROR: %f           ", float(error));
         }
          if(time2 % 50 == 0 && time2 % 100 != 0){
             con.print(2,0, "EncoderAVG: %f           ", float(init_heading));
         }
          if(time2 % 50 == 0){
-            con.print(1,0, "Time2: %f           ", float(position));
+            con.print(1,0, "Time2: %f           ", float(time2));
         }
         
         
@@ -527,13 +527,15 @@ if(init_heading > 180) {
     
 }
 
+
 void driveStraightC(int target) {
 
     int timeout = 30000;
 
     double x = 0;
     x = double(abs(target));
-    timeout = (0.0000000000010191 * pow(x,5)) + (-0.000000005338 * pow(x,4)) + (0.00000985576 * pow(x,3)) + (-0.00845871 * pow(x,2)) + (3.98138 * x) + 177.882;
+      timeout = (0.000000000000151041 * pow(x,5)) + (-0.0000000011639 * pow(x,4)) + (0.00000342017 * pow(x,3)) + (-0.0000000011639 * pow(x,2)) + (3.6931 * x) + 94.3377;
+
  if (target > 0){
     target = target + 500;
  } else{
@@ -637,7 +639,7 @@ void driveClamp(int target, int clampDistance) {
 
     double x = 0;
     x = double(abs(target));
-    timeout = (0.0000000000010191 * pow(x,5)) + (-0.000000005338 * pow(x,4)) + (0.00000985576 * pow(x,3)) + (-0.00845871 * pow(x,2)) + (3.98138 * x) + 177.882;
+     timeout = (0.000000000000151041 * pow(x,5)) + (-0.0000000011639 * pow(x,4)) + (0.00000342017 * pow(x,3)) + (-0.0000000011639 * pow(x,2)) + (3.6931 * x) + 94.3377;
 
     double voltage;
     double encoderAVG;
@@ -681,6 +683,7 @@ if(init_heading > 180) {
     
     setConstants(HEADING_KP, HEADING_KI, HEADING_KD);  
         headingError = calcPID2(init_heading, position, HEADING_INTEGRAL_KI, HEADING_MAX_INTEGRAL);
+        headingError = 0;
 
         if(voltage > 127){
             voltage = 127;
@@ -688,9 +691,10 @@ if(init_heading > 180) {
             voltage = -127;
         }
 
-        if((target - position) < clampDistance){
+         if(abs(target - encoderAVG) < clampDistance){
             Mogo.set_value(true);
         }
+
 
         chasMove((voltage + headingError), (voltage + headingError), (voltage + headingError), (voltage - headingError), (voltage - headingError),(voltage - headingError));
         if (abs(target - encoderAVG) <= 4) count++;
@@ -700,10 +704,10 @@ if(init_heading > 180) {
 
         delay(10);
         if(time2 % 50 == 0 && time2 % 100 != 0 && time2 % 150!= 0){
-            con.print(0,0, "ERROR: %f           ", float(time2));
+            con.print(0,0, "ERROR: %f           ", float(error));
         }
          if(time2 % 50 == 0 && time2 % 100 != 0){
-            con.print(2,0, "EncoderAVG: %f           ", float(LF.get_encoder_units()));
+            con.print(2,0, "EncoderAVG: %f           ", float(init_heading));
         }
          if(time2 % 50 == 0){
             con.print(1,0, "Time2: %f           ", float(time2));
@@ -724,14 +728,15 @@ if(init_heading > 180) {
     
 }
 
-void driveClampS(int target, int clampDistanceFromTarget, int speed) {
+
+
+void driveClampS(int target, int clampDistance, int speed) {
 
     int timeout = 30000;
 
     double x = 0;
     x = double(abs(target));
-    timeout = (-0.000000000000067183 * pow(x,5)) + (0.0000000004403 * pow(x,4)) + (-0.00000099119 * pow(x,3)) + (0.000800677 * pow(x,2)) + (0.3149 * x) + 347.405;
-    timeout = timeout * (2 - (double(speed)/100.0));
+     timeout = (0.000000000000151041 * pow(x,5)) + (-0.0000000011639 * pow(x,4)) + (0.00000342017 * pow(x,3)) + (-0.0000000011639 * pow(x,2)) + (3.6931 * x) + 94.3377;
 
     double voltage;
     double encoderAVG;
@@ -775,16 +780,24 @@ if(init_heading > 180) {
     
     setConstants(HEADING_KP, HEADING_KI, HEADING_KD);  
         headingError = calcPID2(init_heading, position, HEADING_INTEGRAL_KI, HEADING_MAX_INTEGRAL);
+        headingError = 0;
+
 
         if(voltage > 127 * double(speed)/100){
             voltage = 127 * double(speed)/100;
         } else if (voltage < -127 * double(speed)/100){
             voltage = -127 * double(speed)/100;
         }
+        if(voltage > 127){
+            voltage = 127;
+        } else if (voltage < -127){
+            voltage = -127;
+        }
 
-  if(abs(target - encoderAVG) < clampDistanceFromTarget){
+         if(abs(target - encoderAVG) < clampDistance){
             Mogo.set_value(true);
         }
+
 
         chasMove((voltage + headingError), (voltage + headingError), (voltage + headingError), (voltage - headingError), (voltage - headingError),(voltage - headingError));
         if (abs(target - encoderAVG) <= 4) count++;
@@ -794,10 +807,10 @@ if(init_heading > 180) {
 
         delay(10);
         if(time2 % 50 == 0 && time2 % 100 != 0 && time2 % 150!= 0){
-            con.print(0,0, "ERROR: %f           ", float(time2));
+            con.print(0,0, "ERROR: %f           ", float(error));
         }
          if(time2 % 50 == 0 && time2 % 100 != 0){
-            con.print(2,0, "EncoderAVG: %f           ", float(LF.get_encoder_units()));
+            con.print(2,0, "EncoderAVG: %f           ", float(init_heading));
         }
          if(time2 % 50 == 0){
             con.print(1,0, "Time2: %f           ", float(time2));
@@ -819,13 +832,14 @@ if(init_heading > 180) {
 }
 
 
-void driveStraightSlow(int target, int speed) { // RETUNE TIMEOUT!! SLOW PID!
 
+void driveStraightSlow(int target, int speed) { 
     int timeout = 30000;
 
     double x = 0;
     x = double(abs(target));
-    timeout = (-0.000000000000067183 * pow(x,5)) + (0.0000000004403 * pow(x,4)) + (-0.00000099119 * pow(x,3)) + (0.000800677 * pow(x,2)) + (0.3149 * x) + 347.405;
+    // timeout = (-0.000000000000067183 * pow(x,5)) + (0.0000000004403 * pow(x,4)) + (-0.00000099119 * pow(x,3)) + (0.000800677 * pow(x,2)) + (0.3149 * x) + 347.405;
+   
     timeout = timeout * (2 - (double(speed)/100.0));
 
     double voltage;

@@ -334,8 +334,8 @@ if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
 
 
 
-if (con.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
-	driveStraight2(100);
+if (con.get_digital(E_CONTROLLER_DIGITAL_X)){
+	driveArcL(90, 1000, 10000);
 }
 }
 
