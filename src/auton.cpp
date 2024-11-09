@@ -13,9 +13,9 @@ void autonomous() {
 //red left
  if(atn == 0){
     imu.tare();
-    driveStraight2(-400);
+    driveStraight2(-410);
     driveTurn2(90);
-    driveStraightSlow(-200, 50);
+    driveStraightSlow(-200, 30);
     Conveyor.move(100);
     delay(100);
     Conveyor.move(0);
@@ -27,18 +27,24 @@ void autonomous() {
     driveStraightSlow(700, 80);
     driveTurn2(90);
     driveStraightSlow(-530, 80);
-    driveTurn2(150);
-    driveClampS(-1000, 100, 90);
-    driveTurn2(-100);
+    driveTurn2(155);
+    driveClampS(-1000, 100, 80);
+    driveTurn2(-92.5);
     Conveyor.move(-127);
     delay(100);
-    driveStraightSlow(800, 60);
+    driveStraightSlow(1000, 50);
+    delay(200);
+    driveStraightSlow(-250, 60);
     driveTurn2(-10);
     delay(300);
-    driveStraightSlow(500, 50);
+    driveStraightSlow(530, 40);
     driveStraight2(-200);
-    driveTurn2(-30);
-    driveStraightSlow(350, 50);
+    driveTurn2(-37.5);
+    driveStraightSlow(330, 40);
+    delay(750);
+    driveStraight2(-450);
+    driveTurn2(30);
+    driveStraight2(500);
 
 
     // driveTurn2(-40);
@@ -86,6 +92,39 @@ void autonomous() {
 //Blue right side
 
       if(atn == 1) {
+            imu.tare();
+    driveStraight2(-300);
+    driveTurn2(-90);
+    driveStraightSlow(-200, 30);
+    Conveyor.move(100);
+    delay(100);
+    Conveyor.move(0);
+    delay(200);
+    Conveyor.move(-127);
+    delay(750);
+    Conveyor.move(0);
+    imu.tare();
+    driveStraightSlow(700, 80);
+    driveTurn2(-90);
+    driveStraightSlow(-530, 80);
+    driveTurn2(-155);
+    driveClampS(-1000, 100, 80);
+    driveTurn2(92.5);
+    Conveyor.move(-127);
+    delay(100);
+    driveStraightSlow(1000, 50);
+    delay(200);
+    driveStraightSlow(-250, 60);
+    driveTurn2(10);
+    delay(300);
+    driveStraightSlow(530, 40);
+    driveStraight2(-200);
+    driveTurn2(37.5);
+    driveStraightSlow(300, 40);
+    delay(750);
+    driveStraight2(-450);
+    driveTurn2(-30);
+    driveStraight2(500);
 
       }
 //red right side 
@@ -176,6 +215,35 @@ void autonomous() {
 //skills // not done
 
     if(atn == 8)  {
+    Conveyor.move(-127);
+    delay(500);
+    driveStraight(700);
+    driveTurn2(90);
+    driveClampS(-1100, 100, 60);
+    driveTurn2(-90);
+    driveStraight(600);
+    delay(300);
+    driveTurn(130);
+    driveStraight2(-800);
+    Mogo.set_value(false);
+    Conveyor.move(100);
+    driveStraight2(800);
+    Conveyor.move(-127);
+    driveTurn(-130);
+    driveClampS(-2500, 100, 70);
+    imu.tare();
+    driveTurn2(180);
+    driveStraight2(1000);
+    delay(300);
+    driveTurn(-130);
+    driveStraight2(-800);
+    Mogo.set_value(false);
+    Conveyor.move(127);
+    driveStraight2(200);
+    driveTurn(-20);
+    Snake.move(-127);
+    delay(1000);
+    driveStraight2(3500);
 
     }
 //safety/ drive foward
