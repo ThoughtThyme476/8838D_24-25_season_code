@@ -27,7 +27,7 @@ void autonomous() {
     driveStraightSlow(700, 80);
     driveTurn2(90);
     driveStraightSlow(-530, 80);
-    driveTurn2(155);
+    driveTurn2(150);
     driveClampS(-1000, 100, 80);
     driveTurn2(-92.5);
     Conveyor.move(-127);
@@ -35,11 +35,11 @@ void autonomous() {
     driveStraightSlow(1000, 50);
     delay(200);
     driveStraightSlow(-250, 60);
-    driveTurn2(-10);
+    driveTurn2(-15);
     delay(300);
     driveStraightSlow(530, 40);
     driveStraight2(-200);
-    driveTurn2(-37.5);
+    driveTurn2(-40);
     driveStraightSlow(330, 40);
     delay(750);
     driveStraight2(-450);
@@ -91,9 +91,9 @@ void autonomous() {
  }
 //Blue right side
 
-      if(atn == 1) {
-            imu.tare();
-    driveStraight2(-300);
+    if(atn == 1) {
+    imu.tare();
+    driveStraight2(-410);
     driveTurn2(-90);
     driveStraightSlow(-200, 30);
     Conveyor.move(100);
@@ -107,7 +107,7 @@ void autonomous() {
     driveStraightSlow(700, 80);
     driveTurn2(-90);
     driveStraightSlow(-530, 80);
-    driveTurn2(-155);
+    driveTurn2(-150);
     driveClampS(-1000, 100, 80);
     driveTurn2(92.5);
     Conveyor.move(-127);
@@ -115,12 +115,12 @@ void autonomous() {
     driveStraightSlow(1000, 50);
     delay(200);
     driveStraightSlow(-250, 60);
-    driveTurn2(10);
+    driveTurn2(15);
     delay(300);
     driveStraightSlow(530, 40);
     driveStraight2(-200);
-    driveTurn2(37.5);
-    driveStraightSlow(300, 40);
+    driveTurn2(40);
+    driveStraightSlow(330, 40);
     delay(750);
     driveStraight2(-450);
     driveTurn2(-30);
@@ -137,7 +137,7 @@ void autonomous() {
         driveTurn2(10);
         Conveyor.move(-127);
         driveStraight(800);
-        delay(300);
+        delay(200);
         Conveyor.move(0);
         driveTurn2(150);
         driveStraight2(-500);
@@ -163,15 +163,17 @@ void autonomous() {
         driveTurn2(35);
         driveClampS(-450, 10, 80);
         Conveyor.move(127);
+        delay(100);
+        Conveyor.move(0);
         driveTurn2(-10);
         Conveyor.move(-127);
         driveStraight(800);
-        delay(300);
+        delay(200);
         Conveyor.move(0);
         driveTurn2(-150);
         driveStraight2(-500);
         Mogo.set_value(false); 
-        driveStraight2(850);
+        driveStraight2(800);
         driveTurn2(110);
         driveClampS(-1000, 50, 90);
         Conveyor.move(-127);
@@ -248,6 +250,7 @@ void autonomous() {
     }
 //safety/ drive foward
     if(atn == 9){
+        driveStraight2(600);
     }
 
 
