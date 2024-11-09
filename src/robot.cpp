@@ -33,7 +33,7 @@ pros::Motor Snake(SNAKE_PORT, pros::E_MOTOR_GEARSET_18, false);
 pros::ADIDigitalOut Mogo ('D', false);
 pros::ADIDigitalOut DaSorter ('B', false);
 pros::ADIDigitalOut Doinker ('G', false);
-pros::ADIDigitalIn selec ('A');
+pros::ADIDigitalIn selec ('H');
 //pros::ADIAnalogIn DistanceSense ('A');
 pros::Controller con (pros::E_CONTROLLER_MASTER);
 
