@@ -167,6 +167,9 @@ void opcontrol() {
 	bool tankToggle = false;
 	//might be caps or not
 	//bool ___ pneumatics = false or true;
+	bool mogo = false;
+	bool doinker = true;
+	bool intakepiston = true;
 	bool NEWR1 = false;
 	bool NEWR2 = false;
 	int time = 0;
@@ -269,18 +272,44 @@ if(atn == 0) {
 		atn++;
 	}
 
+	if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
+		Hooks.move(127);
+	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+		Hooks.move(-127);
+	} else {
+		Hooks.move(0);
+	}
 
-	//double click
-	// if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
-	// doinker = !doinker;	
-	// } else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-	// 	Rings(-127);
-	// } else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
-	// 	Rings(127);
-	// }
-	// else  {
-	// 	Rings(0);
-	// }
+	if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
+		Ladybrown.move(127);
+	} else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
+		Ladybrown.move(-127);
+	} else {
+		Ladybrown.move(0);
+	}
+
+	if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
+	mogo = !mogo;
+	} 
+	Mogo.set_value(mogo);
+
+	if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)){
+	doinker = !doinker;
+	}
+	Doinker.set_value(doinker);
+
+	
+	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
+	intakepiston = !intakepiston;
+	} else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+		Hooks.move(127);
+	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
+		Hooks.move(-127);
+	}
+	else  {
+		Hooks.move(0);
+	}
+	Intakepiston.set_value(intakepiston);
 
 	
 }

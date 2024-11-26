@@ -10,8 +10,11 @@ extern pros::Motor LM;
 extern pros::Motor RM;
 extern pros::Motor LB;
 extern pros::Motor RB;
-//pneumatics
-//extern pros::ADIDigitalOut ___;
+extern pros::Motor Hooks;
+extern pros::Motor Ladybrown;
+extern pros::ADIDigitalOut Mogo;
+extern pros::ADIDigitalOut Intakepiston;
+extern pros::ADIDigitalOut Doinker;
 extern pros::Controller con; 
 extern pros::Imu imu;
 extern pros::ADIDigitalIn selec;
