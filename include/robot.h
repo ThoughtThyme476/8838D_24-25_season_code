@@ -10,16 +10,10 @@ extern pros::Motor LM;
 extern pros::Motor RM;
 extern pros::Motor LB;
 extern pros::Motor RB;
-extern pros::Motor Intake;
-extern pros::Motor Conveyor;
-extern pros::Motor Snake;
-extern pros::ADIDigitalOut Mogo;
-extern pros::ADIDigitalOut DaSorter;
-extern pros::ADIDigitalOut Doinker;
-extern pros::ADIDigitalOut Flipout;
+//pneumatics
+//extern pros::ADIDigitalOut ___;
 extern pros::Controller con; 
 extern pros::Imu imu;
-extern pros::Optical Eyesight;
 extern pros::ADIDigitalIn selec;
 
 #endif

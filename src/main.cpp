@@ -165,23 +165,24 @@ void opcontrol() {
 	LF.set_brake_mode(E_MOTOR_BRAKE_COAST);
 	bool arcToggle = true;
 	bool tankToggle = false;
-	bool PistonsForMogo = false;
-	bool twoBar = false;
-	bool doinker = false;
+	//might be caps or not
+	//bool ___ pneumatics = false or true;
 	bool NEWR1 = false;
 	bool NEWR2 = false;
-	double lift_angle = 0;
 	int time = 0;
 	string red;
 	string blue;
 	
-	int color_selec = 1;
-	Eyesight.set_led_pwm(100);
+	// int color_selec = 1;
+	// Eyesight.set_led_pwm(100);
 while (true){
+	
 	// if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)){
 	// 	arcToggle = !arcToggle;
 	// 	tankToggle = !tankToggle;
 	// }
+
+
 	if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_R1)){
 		NEWR1 = true;
 	} else {
@@ -204,6 +205,7 @@ while (true){
  RM.move(con.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y));
  RB.move(con.get_analog(E_CONTROLLER_ANALOG_RIGHT_Y));
 	}
+
 	if (arcToggle){
   int RX = con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
   int power = con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
@@ -223,10 +225,10 @@ if(atn == 0) {
 		autstr = "RedLeft";
 	}
 	if(atn == 1) {
-		autstr = "BlueRight";
+		autstr = "RedRight";
 	}
 	if(atn == 2) {
-		autstr = "RedRight";
+		autstr = "BlueRight";
 	}
 	if(atn == 3) {
 		autstr = "BlueLeft";
@@ -235,10 +237,10 @@ if(atn == 0) {
 		autstr = "RedLeftElims";
 	}
 	if(atn == 5) {
-		autstr = "BlueRightElims";
+		autstr = "RedRightElims";
 	}
 	if(atn == 6) {
-		autstr = "RedRightElims";
+		autstr = "BlueRightElims";
 	}
 	if(atn == 7) {
 		autstr = "BlueLeftElims";
@@ -266,21 +268,9 @@ if(atn == 0) {
 	if(pressed == 1){
 		atn++;
 	}
-////////////////////////////////////////////////change values
-//da
 
-// if (con.get_digital(E_CONTROLLER_DIGITAL_X)) { 
-// //	driveTurn2(175);
-// driveTurn2(100);
-// driveTurn2(-170);
-// //driveArcL(90, 700, 30000);
-// }
-	
-//////////////////////////////////////////ADD THIS FOR COLOR TESTING 
-	//ColorSort(color_selec);
 
-/////////////////////////////////////////////
-	
+	//double click
 	// if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
 	// doinker = !doinker;	
 	// } else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
@@ -292,56 +282,10 @@ if(atn == 0) {
 	// 	Rings(0);
 	// }
 
-	if (con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-	Conveyor.move(-127);
-	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)) {
-	Conveyor.move(127);
-	} else {
-	Conveyor.move(0);
-	}
-
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
-	PistonsForMogo = !PistonsForMogo;
-}
-Mogo.set_value(PistonsForMogo);
-////////////////////////////////////////////////////////////// make this a piston flip out 
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)){
-	doinker = !doinker;
-}
-Doinker.set_value(doinker);
-
-
-
-// if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
-// 	flipout = !flipout;
-// }
-// Flipout.set_value(flipout);
-
-
-
-if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
-	Snake.move(-127);
-	lift_angle = Snake.get_position();
-} else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
-	Snake.move(127);
-	lift_angle = Snake.get_position();
-} else{
-	setConstants(LIFT_KP, LIFT_KI, LIFT_KD);
-	Snake.move(calcPID(lift_angle, Snake.get_position(), 0, 0));
+	
 }
 
 
-
-
-
-if (con.get_digital(E_CONTROLLER_DIGITAL_X)){
-	driveArcL(90, 1000, 10000);
-}
-}
-
-// if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-// driveTurn(10);
-// }
 
 
 pros::delay(1);
