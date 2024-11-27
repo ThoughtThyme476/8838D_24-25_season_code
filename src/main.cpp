@@ -162,7 +162,7 @@ while(true){
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	LF.set_brake_mode(E_MOTOR_BRAKE_COAST);
+	
 	bool arcToggle = true;
 	bool tankToggle = false;
 	//might be caps or not
@@ -212,7 +212,7 @@ while (true){
 	if (arcToggle){
   int RX = con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X);
   int power = con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-  int turn = int(abs(RX) * RX / 200);
+  int turn = int(abs(RX) * RX / 250);
   int left = power + turn;
   int right = power - turn;
 
@@ -273,43 +273,43 @@ if(atn == 0) {
 	}
 
 	if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
-		Hooks.move(127);
+		hooks.move(127);
 	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-		Hooks.move(-127);
+		hooks.move(-127);
 	} else {
-		Hooks.move(0);
+		hooks.move(0);
 	}
 
-	if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
-		Ladybrown.move(127);
-	} else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
-		Ladybrown.move(-127);
-	} else {
-		Ladybrown.move(0);
-	}
+	// if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
+	// 	Ladybrown.move(127);
+	// } else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
+	// 	Ladybrown.move(-127);
+	// } else {
+	// 	Ladybrown.move(0);
+	// }
 
-	if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
-	mogo = !mogo;
-	} 
-	Mogo.set_value(mogo);
+	// if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
+	// mogo = !mogo;
+	// } 
+	// Mogo.set_value(mogo);
 
-	if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)){
-	doinker = !doinker;
-	}
-	Doinker.set_value(doinker);
+	// if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)){
+	// doinker = !doinker;
+	// }
+	// Doinker.set_value(doinker);
 
 	
-	if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
-	intakepiston = !intakepiston;
-	} else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-		Hooks.move(127);
-	} else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
-		Hooks.move(-127);
-	}
-	else  {
-		Hooks.move(0);
-	}
-	Intakepiston.set_value(intakepiston);
+	// if (((con.get_digital(E_CONTROLLER_DIGITAL_R1) && NEWR2) || (con.get_digital(E_CONTROLLER_DIGITAL_R2) && NEWR1)) || (NEWR1 && NEWR2)){
+	// intakepiston = !intakepiston;
+	// } else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+	// 	Hooks.move(127);
+	// } else if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
+	// 	Hooks.move(-127);
+	// }
+	// else  {
+	// 	Hooks.move(0);
+	// }
+	// Intakepiston.set_value(intakepiston);
 
 	
 }
